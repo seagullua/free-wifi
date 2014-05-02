@@ -3,3 +3,4 @@ gen/
 *.so
 obj/
 build/
+*.user

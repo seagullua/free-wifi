@@ -1,3 +1,6 @@
 [submodule "libraries/jansson"]
 	path = libraries/jansson
 	url = git@github.com:seagullua/jansson.git
+[submodule "libraries/CryptoPP"]
+	path = libraries/CryptoPP
+	url = git@github.com:seagullua/CryptoPP.git
