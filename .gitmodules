@@ -1,0 +1,3 @@
+[submodule "libraries/jansson"]
+	path = libraries/jansson
+	url = git@github.com:seagullua/jansson.git
