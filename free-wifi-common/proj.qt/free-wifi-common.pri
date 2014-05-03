@@ -1,10 +1,11 @@
-INCLUDEPATH += $$PWD/../
-include($$PWD/../../libraries/jansson/proj.qt/jansson.pri)
-include($$PWD/../../libraries/CryptoPP/proj.qt/CryptoPP.pri)
+INCLUDEPATH += $$PWD/..
 
-SOURCES += \
-    $$PWD/../freewifi/Test.cpp
-	
-HEADERS += \
-    $$PWD/../freewifi/Test.h
-	
+CONFIG(debug, debug|release) {
+    LIBS += -L$$PWD/bin/debug/ -lfree-wifi-common
+} else {
+    LIBS += -L$$PWD/bin/release/ -lfree-wifi-common
+}
+
+include($$PWD/../../libraries/CryptoPP/proj.qt/cryptoPP.pri)
+include($$PWD/../../libraries/jansson/proj.qt/jansson.pri)
+include($$PWD/../../libraries/curl/proj.qt/curl.pri)

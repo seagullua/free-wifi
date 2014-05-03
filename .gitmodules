@@ -4,3 +4,6 @@
 [submodule "libraries/CryptoPP"]
 	path = libraries/CryptoPP
 	url = git@github.com:seagullua/CryptoPP.git
+[submodule "libraries/curl"]
+	path = libraries/curl
+	url = git@github.com:seagullua/curl.git
