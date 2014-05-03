@@ -1,10 +1,10 @@
-INCLUDEPATH += $$PWD/../Classes
+INCLUDEPATH += $$PWD/../
 include($$PWD/../../libraries/jansson/proj.qt/jansson.pri)
 include($$PWD/../../libraries/CryptoPP/proj.qt/CryptoPP.pri)
 
 SOURCES += \
-    $$PWD/../Classes/Test.cpp
+    $$PWD/../freewifi/Test.cpp
 	
 HEADERS += \
-    $$PWD/../Classes/Test.h
+    $$PWD/../freewifi/Test.h
 	
