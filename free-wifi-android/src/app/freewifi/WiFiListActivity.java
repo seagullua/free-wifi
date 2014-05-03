@@ -11,9 +11,10 @@ import android.net.wifi.ScanResult;
 //import android.net.wifi.WifiConfiguration;   
 import android.net.wifi.WifiManager;    
 import android.os.Bundle;    
+import android.os.Handler;
 //import android.util.Log;   
-import android.view.View;    
-import android.view.View.OnClickListener;    
+//import android.view.View;    
+//import android.view.View.OnClickListener;    
 //import android.widget.AdapterView;    
 import android.widget.Button;    
 import android.widget.ListView;    
@@ -21,7 +22,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;    
 import android.widget.Toast;
 
-public class WiFiListActivity extends Activity implements OnClickListener
+public class WiFiListActivity extends Activity
  {      
     WifiManager wifi;       
     ListView lv;
@@ -45,16 +46,12 @@ public class WiFiListActivity extends Activity implements OnClickListener
     ArrayList<HashMap<String, String>> arraylist = new ArrayList<HashMap<String, String>>();
     SimpleAdapter adapter;
 
-    /* Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wifilist_activity);
 
-        textStatus = (TextView) findViewById(R.id.textView1);
-        buttonScan = (Button) findViewById(R.id.button1);
-        buttonScan.setOnClickListener(this);
         lv = (ListView)findViewById(R.id.listView1);
 
         wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -64,26 +61,40 @@ public class WiFiListActivity extends Activity implements OnClickListener
             wifi.setWifiEnabled(true);
         }   
         this.adapter = new SimpleAdapter(WiFiListActivity.this, 
-        		arraylist, android.R.layout.simple_list_item_1, 
+        		arraylist,
+        		android.R.layout.simple_list_item_1, 
         		new String[] { ITEM_KEY }, new int[] { android.R.id.text1 });
+        
         lv.setAdapter(this.adapter);
 
-        registerReceiver(reciever, filter);                    
+        wifi.startScan();
+        registerReceiver(reciever, filter);     
+        
+        
+        Toast.makeText(this, "Scanning....", Toast.LENGTH_SHORT).show();
+    	final Handler handler = new Handler();
+    	handler.postDelayed(new Runnable() {
+    	  @Override
+    	  public void run() {
+    		  onClick();
+    	  }
+    	}, 4000);
+        
     }
 
-    public void onClick(View view) 
+    public void onClick() 
     {
         arraylist.clear();          
-        wifi.startScan();
+        //wifi.startScan();
 
-        Toast.makeText(this, "Scanning...." + size, Toast.LENGTH_SHORT).show();
         try 
         {
             size = size - 1;
             while (size >= 0) 
             {   
                 HashMap<String, String> item = new HashMap<String, String>();                       
-                item.put(ITEM_KEY, results.get(size).SSID + "  " + results.get(size).capabilities);
+                item.put(ITEM_KEY, results.get(size).SSID);
+                //results.get(size).SSID + "  " + results.get(size).capabilities
 
                 arraylist.add(item);
                 size--;
