@@ -70,32 +70,35 @@ package app.freewifi;
 //   }
 //}
 
-
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-
 import app.freewifi.fragments.*;
 
-public class MainActivity extends Activity implements WiFiList.OnItemSelectedListener{
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+//import android.view.Menu;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+public class MainActivity extends Activity implements
+WiFiList.OnItemSelectedListener {
 
-    // if the wizard generated an onCreateOptionsMenu you can delete
-    // it, not needed for this tutorial
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+  }
 
   @Override
   public void onRssItemSelected(String link) {
-    WiFiDetail fragment = (WiFiDetail) getFragmentManager()
-            .findFragmentById(R.id.detailFragment);
-        if (fragment != null && fragment.isInLayout()) {
-          fragment.setText(link);
-        } 
+	  WiFiDetail fragment = (WiFiDetail) getFragmentManager()
+        .findFragmentById(R.id.detailFragment);
+    if (fragment != null && fragment.isInLayout()) {
+      fragment.setText(link);
+    } else {
+      Intent intent = new Intent(getApplicationContext(),
+          DetailActivity.class);
+      intent.putExtra(DetailActivity.EXTRA_URL, link);
+      startActivity(intent);
+
+    }
   }
-    
-} 
+
+}  
