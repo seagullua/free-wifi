@@ -4,3 +4,7 @@ gen/
 obj/
 build/
 *.user
+
+.project
+.classpath
+lint.xml
