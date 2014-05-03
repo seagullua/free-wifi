@@ -92,8 +92,13 @@ public class WiFiListActivity extends Activity
             size = size - 1;
             while (size >= 0) 
             {   
+                //add signal level
+                int rssi = results.get(size).level;
+                rssi = WifiManager.calculateSignalLevel(rssi, 5);
+                
+                
                 HashMap<String, String> item = new HashMap<String, String>();                       
-                item.put(ITEM_KEY, results.get(size).SSID);
+                item.put(ITEM_KEY, results.get(size).SSID + " " + rssi + results.get(size).capabilities);
                 //results.get(size).SSID + "  " + results.get(size).capabilities
 
                 arraylist.add(item);
