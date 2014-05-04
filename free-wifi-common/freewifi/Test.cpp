@@ -1,14 +1,59 @@
 #include "Test.h"
 #include <jansson.h>
-#include <c5/aes.h>
+#include <tomcrypt.h>
 #include <curl/curl.h>
-#include <iostream>
+//#include <iostream>
 Test::Test()
 {
 }
+void testEncryption()
+{
+    unsigned char key[16], nonce[12], pt[32], ct[32],
+            tag[16], tagcp[16];
+
+    unsigned long taglen;
+    int err;
+    /* register cipher */
+    register_cipher(&aes_desc);
+    /* somehow fill key, nonce, pt */
+    /* encrypt it */
+    taglen = sizeof(tag);
+    if ((err =
+         ccm_memory(find_cipher("aes"),
+                    key, 16, /* 128-bit key */
+                    NULL, /* not prescheduled */
+                    nonce, 12, /* 96-bit nonce */
+                    NULL, 0, /* no header */
+                    pt, 32, /* 32-byte plaintext */
+                    ct, /* ciphertext */
+                    tag, &taglen,
+                    CCM_ENCRYPT)) != CRYPT_OK) {
+        printf("ccm_memory error %s\n", error_to_string(err));
+        return;
+    }
+    /* ct[0..31] and tag[0..15] now hold the output */
+    /* decrypt it */
+    taglen = sizeof(tagcp);
+    if ((err =
+         ccm_memory(find_cipher("aes"),
+                    key, 16, /* 128-bit key */
+                    NULL, /* not prescheduled */
+                    nonce, 12, /* 96-bit nonce */
+                    NULL, 0, /* no header */
+                    ct, 32, /* 32-byte ciphertext */
+                    pt, /* plaintext */
+                    tagcp, &taglen,
+                    CCM_DECRYPT)) != CRYPT_OK) {
+        printf("ccm_memory error %s\n", error_to_string(err));
+        return ;
+    }
+    /* now pt[0..31] should hold the original plaintext,
+    tagcp[0..15] and tag[0..15] should have the same contents */
+}
+
 void runTests()
 {
-    CryptoPP::AESEncryption a;
+    testEncryption();
     json_error_t error;
     json_t *root = json_loads("aaa", 0, &error);
 
@@ -26,9 +71,9 @@ void runTests()
         /* Check for errors */
         if(res == CURLE_OK)
         {
-            std::cout << res;
+            //std::cout << res;
         }
-        std::cout << res;
+        //std::cout << res;
         /* always cleanup */
         curl_easy_cleanup(curl);
     }

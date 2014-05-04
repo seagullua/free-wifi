@@ -11,7 +11,7 @@ CONFIG(debug, debug|release) {
 INCLUDEPATH += ../
 #
 include($$PWD/../../libraries/jansson/proj.qt/jansson.pri)
-include($$PWD/../../libraries/CryptoPP/proj.qt/cryptoPP.pri)
+include($$PWD/../../libraries/libtomcrypt/proj.qt/libtomcrypt.pri)
 include($$PWD/../../libraries/curl/proj.qt/curl.pri)
 
 SOURCES += \

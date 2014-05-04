@@ -1,13 +1,14 @@
 #include <jni.h>
-#include <jansson.h>
-//#include <c5/aes.h>
+
+#undef JNIEXPORT
+#define JNIEXPORT __attribute__ ((visibility("default")))
+
+#include <freewifi/Test.h>
 extern "C"
 {
-jint Java_app_freewifi_MainActivity_addNumbers(JNIEnv*  env, jclass, jint a, jint b)
+JNIEXPORT jint Java_app_freewifi_MainActivity_addNumbers(JNIEnv*  env, jclass, jint a, jint b)
 {
-	//CryptoPP::AESEncryption ar;
-	json_error_t error;
-	json_t *root = json_loads("aaa", 0, &error);
-    return a+b;
+	runTests();
+	return 3;
 }
 }

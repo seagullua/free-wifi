@@ -6,6 +6,6 @@ CONFIG(debug, debug|release) {
     LIBS += -L$$PWD/bin/release/ -lfree-wifi-common
 }
 
-include($$PWD/../../libraries/CryptoPP/proj.qt/cryptoPP.pri)
+include($$PWD/../../libraries/libtomcrypt/proj.qt/libtomcrypt.pri)
 include($$PWD/../../libraries/jansson/proj.qt/jansson.pri)
 include($$PWD/../../libraries/curl/proj.qt/curl.pri)

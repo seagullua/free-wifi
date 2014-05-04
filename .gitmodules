@@ -7,3 +7,6 @@
 [submodule "libraries/curl"]
 	path = libraries/curl
 	url = git@github.com:seagullua/curl.git
+[submodule "libraries/libtomcrypt"]
+	path = libraries/libtomcrypt
+	url = git@github.com:seagullua/libtomcrypt.git
