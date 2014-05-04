@@ -97,8 +97,20 @@ public class WiFiListActivity extends Activity
                 rssi = WifiManager.calculateSignalLevel(rssi, 5);
                 
                 
+                //if free wifi
+                String is_free = "free";
+                if(results.get(size).capabilities.contains("WEP") ||
+                		results.get(size).capabilities.contains("WPA")	||
+                		results.get(size).capabilities.contains("WPS") ||
+                		results.get(size).capabilities.contains("PSK") ||
+                		results.get(size).capabilities.contains("CCMP") ||
+                		results.get(size).capabilities.contains("TKIP"))
+                {
+                	is_free = "keyed";
+                }
+                
                 HashMap<String, String> item = new HashMap<String, String>();                       
-                item.put(ITEM_KEY, results.get(size).SSID + " " + rssi + results.get(size).capabilities);
+                item.put(ITEM_KEY, results.get(size).SSID + " " + rssi + results.get(size).capabilities + " " + is_free);
                 //results.get(size).SSID + "  " + results.get(size).capabilities
 
                 arraylist.add(item);
