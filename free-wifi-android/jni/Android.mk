@@ -3,7 +3,10 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := FreeWifi
-LOCAL_SRC_FILES := FreeWifi.cpp
+FILE_LIST := $(wildcard $(LOCAL_PATH)/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/platform/*.cpp)
+
+LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%)
 
 LOCAL_STATIC_LIBRARIES := freewificommon_static
 
