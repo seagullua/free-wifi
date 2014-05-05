@@ -6,10 +6,65 @@
 #include "freewifi/crypto/Data.h"
 #include "freewifi/crypto/Base64.h"
 #include "freewifi/crypto/ZLib.h"
+#include "sqlite3.h"
+
 //#include <iostream>
 Test::Test()
 {
 }
+void testSQL()
+{
+    sqlite3* db=NULL;
+    int success = sqlite3_open("my.db", &db);
+
+    if(success != SQLITE_OK)
+    {
+        log("DB failed2");
+        return;
+    }
+
+    if(!db)
+    {
+        log("DB failed");
+        return;
+    }
+    std::string key="abadgsfdg";
+    sqlite3_key(db, key.c_str(), key.size());
+
+    success = sqlite3_exec(db, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
+    if(success == SQLITE_OK)
+    {
+        log("DB success");
+        success = sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS mytbl(mid INTEGER PRIMARY KEY AUTOINCREMENT, val TEXT)", NULL, NULL, NULL);
+        if(success == SQLITE_OK)
+        {
+            log("DB query");
+            sqlite3_exec(db, "BEGIN IMMEDIATE TRANSACTION", NULL, NULL, NULL);
+            for(int i=0; i<100000; ++i)
+            {
+
+                success = sqlite3_exec(db, "INSERT INTO mytbl(val) VALUES ('aaa')", NULL, NULL, NULL);
+                if(success != SQLITE_OK)
+                {
+                    log("insert err %d", i);
+                }
+//                else
+//                {
+//                    std::cout << i << std::endl;
+//                    std::cout.flush();
+//                }
+            }
+            sqlite3_exec(db, "COMMIT TRANSACTION", NULL, NULL, NULL);
+        }
+    }
+    else
+    {
+        log("DB failed");
+    }
+
+    sqlite3_close(db);
+}
+
 void testEncryption()
 {
     unsigned char key[16], nonce[12], pt[32], ct[32],
@@ -56,6 +111,7 @@ void testEncryption()
 }
 void testData()
 {
+
     DataPtr dun = Data::create("hello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-world");
     log(dun->toString());
 
@@ -88,6 +144,7 @@ void testData()
 
 void runTests()
 {
+    testSQL();
     testData();
     log("Test: %d", 54);
     log("Test: %d", 53);

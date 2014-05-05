@@ -13,3 +13,6 @@
 [submodule "libraries/zlib"]
 	path = libraries/zlib
 	url = git@github.com:seagullua/zlib.git
+[submodule "libraries/sqlcipher-amalgamation"]
+	path = libraries/sqlcipher-amalgamation
+	url = git@github.com:seagullua/sqlcipher-amalgamation.git
