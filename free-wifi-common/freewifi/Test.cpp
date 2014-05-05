@@ -2,6 +2,10 @@
 #include <jansson.h>
 #include <tomcrypt.h>
 #include <curl/curl.h>
+#include "freewifi/platform/Log.h"
+#include "freewifi/crypto/Data.h"
+#include "freewifi/crypto/Base64.h"
+#include "freewifi/crypto/ZLib.h"
 //#include <iostream>
 Test::Test()
 {
@@ -50,31 +54,66 @@ void testEncryption()
     /* now pt[0..31] should hold the original plaintext,
     tagcp[0..15] and tag[0..15] should have the same contents */
 }
+void testData()
+{
+    DataPtr dun = Data::create("hello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-worldhello-world");
+    log(dun->toString());
+
+    DataPtr d = ZLib::compress(dun);
+
+
+    DataPtr base64 = Base64::encode(d);
+    if(base64)
+    {
+        log(base64->toString());
+
+        DataPtr dec = Base64::decode(base64);
+        log(ZLib::decompress(dec)->toString());
+        std::string dec_string = base64->toString();
+
+        if(dec)
+            log(dec_string);
+
+        dec_string[2] = '*';
+
+        DataPtr dec2 = Base64::decode(Data::create(dec_string));
+        if(dec2)
+            log("Dec ok");
+        else
+            log("Dec failed");
+
+    }
+
+}
 
 void runTests()
 {
+    testData();
+    log("Test: %d", 54);
+    log("Test: %d", 53);
+
     testEncryption();
     json_error_t error;
     json_t *root = json_loads("aaa", 0, &error);
 
-    CURL *curl;
-    CURLcode res;
+//    CURL *curl;
+//    CURLcode res;
 
-    curl = curl_easy_init();
-    if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "http://4enjoy.com");
-        /* example.com is redirected, so we tell libcurl to follow redirection */
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+//    curl = curl_easy_init();
+//    if(curl) {
+//        curl_easy_setopt(curl, CURLOPT_URL, "http://4enjoy.com");
+//        /* example.com is redirected, so we tell libcurl to follow redirection */
+//        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
-        /* Perform the request, res will get the return code */
-        res = curl_easy_perform(curl);
-        /* Check for errors */
-        if(res == CURLE_OK)
-        {
-            //std::cout << res;
-        }
-        //std::cout << res;
-        /* always cleanup */
-        curl_easy_cleanup(curl);
-    }
+//        /* Perform the request, res will get the return code */
+//        res = curl_easy_perform(curl);
+//        /* Check for errors */
+//        if(res == CURLE_OK)
+//        {
+//            //std::cout << res;
+//        }
+//        //std::cout << res;
+//        /* always cleanup */
+//        curl_easy_cleanup(curl);
+//    }
 }

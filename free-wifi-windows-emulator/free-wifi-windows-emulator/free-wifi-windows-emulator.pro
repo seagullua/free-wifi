@@ -20,7 +20,8 @@ CONFIG(debug, debug|release) {
 include($$PWD/../../free-wifi-common/proj.qt/free-wifi-common.pri)
 
 SOURCES += main.cpp\
-        MainWindow.cpp
+        MainWindow.cpp \
+    platform/log.cpp
 
 HEADERS  += MainWindow.h
 
