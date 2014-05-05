@@ -15,55 +15,57 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MySimpleArrayAdapter extends ArrayAdapter<String> {
-  private final Context context;
-  private final ArrayList<ScanResult> values;
-  
-  private int selectedIndex;
-  private int selectedColor = Color.parseColor("#1b1b1b");
+	private final Context context;
+	private final ArrayList<ScanResult> values;
 
-  public MySimpleArrayAdapter(Context context, 
-		  ArrayList<ScanResult> arraylist) {
-    super(context, R.layout.rowlayout);
-    this.context = context;
-    this.values = arraylist;
-  }
-  public void update(ArrayList<ScanResult> new_values) {
-	  values.clear();
-	  values.addAll(new_values);
-	  this.notifyDataSetChanged();
+	private int selectedIndex;
+	private int selectedColor = Color.parseColor("#1b1b1b");
+
+	public MySimpleArrayAdapter(Context context, ArrayList<ScanResult> arraylist) {
+		super(context, R.layout.rowlayout);
+		this.context = context;
+		this.values = arraylist;
 	}
-  @Override
-  public View getView(int position, View convertView, ViewGroup parent) {
-    
-	 Log.d("IN GET VIEW", "in getView");
-	 
-	 
-	  LayoutInflater inflater = (LayoutInflater) context
-        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    
-	  View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
-    
-	  TextView textView = (TextView) rowView.findViewById(R.id.name);
-	  TextView status = (TextView) rowView.findViewById(R.id.status);
-    
-	  ImageView imageView = (ImageView) rowView.findViewById(R.id.wifiicon);
-    
-	  textView.setText(values.get(position).BSSID);
-	  status.setText(values.get(position).capabilities);
-    
-	  // Change the icon for Windows and iPhone
-//	  String s = values[position];
-//	  
-//		if (s.startsWith("Windows7") || s.startsWith("iPhone")
-//		    || s.startsWith("Solaris")) {
-//			//TODO: change imagine
-//		  imageView.setImageResource(R.drawable.ic_launcher);
-//		} else {
-//		  imageView.setImageResource(R.drawable.ic_launcher);
-//		}
-		
-		
 
-    return rowView;
-  }
-} 
+	// public void update(ArrayList<ScanResult> new_values) {
+	// values.clear();
+	// values.addAll(new_values);
+	// this.notifyDataSetChanged();
+	// }
+	@Override
+	public int getCount() {
+		return values.size();
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+
+		Log.d("IN GET VIEW", "in getView");
+
+		LayoutInflater inflater = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
+
+		TextView textView = (TextView) rowView.findViewById(R.id.name);
+		TextView status = (TextView) rowView.findViewById(R.id.status);
+
+		ImageView imageView = (ImageView) rowView.findViewById(R.id.wifiicon);
+
+		textView.setText(values.get(position).BSSID);
+		status.setText(values.get(position).capabilities);
+
+		// Change the icon for Windows and iPhone
+		// String s = values[position];
+		//
+		// if (s.startsWith("Windows7") || s.startsWith("iPhone")
+		// || s.startsWith("Solaris")) {
+		// //TODO: change imagine
+		// imageView.setImageResource(R.drawable.ic_launcher);
+		// } else {
+		// imageView.setImageResource(R.drawable.ic_launcher);
+		// }
+		Log.d("free", "Item" + values.get(position).BSSID);
+		return rowView;
+	}
+}
