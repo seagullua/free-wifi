@@ -71,11 +71,13 @@ public class WiFiListActivity extends Activity {
 //    this.adapter = new SimpleAdapter(WiFiListActivity.this, 
 //    		arraylist,
 //    		android.R.layout.simple_list_item_1, 
-//    		new String[] { ITEM_KEY }, new int[] { android.R.id.text1 });
+//    		new String[] { ITEM_KEY },
+ //         new int[] { android.R.id.text1 });
     
     
   //set adapter
-    adapter = new MySimpleArrayAdapter(this, arraylist);
+    adapter = new MySimpleArrayAdapter(WiFiListActivity.this, 
+    		arraylist);
     lv.setAdapter(adapter);
     
     

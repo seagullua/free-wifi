@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.wifi.ScanResult;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,16 +35,21 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     
+	 Log.d("IN GET VIEW", "in getView");
+	 
+	 
 	  LayoutInflater inflater = (LayoutInflater) context
         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     
 	  View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
     
 	  TextView textView = (TextView) rowView.findViewById(R.id.name);
+	  TextView status = (TextView) rowView.findViewById(R.id.status);
     
 	  ImageView imageView = (ImageView) rowView.findViewById(R.id.wifiicon);
     
 	  textView.setText(values.get(position).BSSID);
+	  status.setText(values.get(position).capabilities);
     
 	  // Change the icon for Windows and iPhone
 //	  String s = values[position];
