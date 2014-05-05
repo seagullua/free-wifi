@@ -35,7 +35,7 @@ DataPtr ZLib::decompress(const DataPtr& source)
     //We are not storing the size of data and first try do decompress it
     //to the buffer which size if COMPRESS_DATA_SIZE*BASE_COMPRESSION_RATIO,
     //if this buffer will be small we will try COMPRESS_DATA_SIZE*BASE_COMPRESSION_RATIO*2, COMPRESS_DATA_SIZE*BASE_COMPRESSION_RATIO*4,...
-    static const int BASE_COMPRESSION_RATIO = 3;
+    static const int BASE_COMPRESSION_RATIO = 2;
 
     DataPtr output = Data::create();
     Data::ByteArr& output_raw = output->getRawData();
