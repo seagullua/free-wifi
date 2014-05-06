@@ -7,6 +7,8 @@
 #include "freewifi/crypto/Base64.h"
 #include "freewifi/crypto/ZLib.h"
 #include "sqlite3.h"
+#include "freewifi/crypto/Random.h"
+#include "freewifi/crypto/Protect.h"
 
 //#include <iostream>
 Test::Test()
@@ -40,7 +42,7 @@ void testSQL()
         {
             log("DB query");
             sqlite3_exec(db, "BEGIN IMMEDIATE TRANSACTION", NULL, NULL, NULL);
-            for(int i=0; i<100000; ++i)
+            for(int i=0; i<100; ++i)
             {
 
                 success = sqlite3_exec(db, "INSERT INTO mytbl(val) VALUES ('aaa')", NULL, NULL, NULL);
@@ -64,50 +66,40 @@ void testSQL()
 
     sqlite3_close(db);
 }
+void testRandom()
+{
+    log("Rand start");
+    DataPtr d = Random::generateRandomData(30);
+    log(Base64::encode(d)->toString());
+
+    log("Rand end");
+}
 
 void testEncryption()
 {
-    unsigned char key[16], nonce[12], pt[32], ct[32],
-            tag[16], tagcp[16];
+    std::string plain_text = "The rooster crows at midnight!";
+    std::string key = "A16ByteKey......";
 
-    unsigned long taglen;
-    int err;
-    /* register cipher */
-    register_cipher(&aes_desc);
-    /* somehow fill key, nonce, pt */
-    /* encrypt it */
-    taglen = sizeof(tag);
-    if ((err =
-         ccm_memory(find_cipher("aes"),
-                    key, 16, /* 128-bit key */
-                    NULL, /* not prescheduled */
-                    nonce, 12, /* 96-bit nonce */
-                    NULL, 0, /* no header */
-                    pt, 32, /* 32-byte plaintext */
-                    ct, /* ciphertext */
-                    tag, &taglen,
-                    CCM_ENCRYPT)) != CRYPT_OK) {
-        printf("ccm_memory error %s\n", error_to_string(err));
-        return;
-    }
-    /* ct[0..31] and tag[0..15] now hold the output */
-    /* decrypt it */
-    taglen = sizeof(tagcp);
-    if ((err =
-         ccm_memory(find_cipher("aes"),
-                    key, 16, /* 128-bit key */
-                    NULL, /* not prescheduled */
-                    nonce, 12, /* 96-bit nonce */
-                    NULL, 0, /* no header */
-                    ct, 32, /* 32-byte ciphertext */
-                    pt, /* plaintext */
-                    tagcp, &taglen,
-                    CCM_DECRYPT)) != CRYPT_OK) {
-        printf("ccm_memory error %s\n", error_to_string(err));
-        return ;
-    }
-    /* now pt[0..31] should hold the original plaintext,
-    tagcp[0..15] and tag[0..15] should have the same contents */
+    DataPtr iv = Data::create();
+    Data::ByteArr& iv_raw = iv->getRawData();
+
+    iv_raw.resize(Protect::IV_SIZE, 0);
+
+    DataPtr enc = Protect::encodeIV(Data::create(plain_text),
+                                    Data::create(key),
+                                    iv);
+    DataPtr enc2 = Protect::encode(Data::create(plain_text),
+                                   Data::create(key));
+
+    log("Enc: "+Base64::encode(enc)->toString());
+    log("Enc2: "+Base64::encode(enc2)->toString());
+
+    DataPtr dec = Protect::decodeIV(enc, Data::create(key), iv);
+    DataPtr dec2 = Protect::decode(enc2, Data::create(key));
+    log("Dec: "+dec->toString());
+    log("Dec2: "+dec2->toString());
+
+
 }
 void testData()
 {
@@ -144,12 +136,18 @@ void testData()
 
 void runTests()
 {
+    //testEncryption();
+    testRandom();
     testSQL();
+    testEncryption();
+    testSQL();
+
+
     testData();
     log("Test: %d", 54);
     log("Test: %d", 53);
 
-    testEncryption();
+
     json_error_t error;
     json_t *root = json_loads("aaa", 0, &error);
 

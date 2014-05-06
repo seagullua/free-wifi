@@ -23,14 +23,18 @@ SOURCES += \
     ../freewifi/Test.cpp \
     ../freewifi/crypto/Base64.cpp \
     ../freewifi/crypto/Data.cpp \
-    ../freewifi/crypto/ZLib.cpp
+    ../freewifi/crypto/ZLib.cpp \
+    ../freewifi/crypto/Random.cpp \
+    ../freewifi/crypto/Protect.cpp
 
 HEADERS += \
     ../freewifi/Test.h \
     ../freewifi/platform/Log.h \
     ../freewifi/crypto/Base64.h \
     ../freewifi/crypto/Data.h \
-    ../freewifi/crypto/ZLib.h
+    ../freewifi/crypto/ZLib.h \
+    ../freewifi/crypto/Random.h \
+    ../freewifi/crypto/Protect.h
 
 
 

@@ -1,6 +1,6 @@
 #include <freewifi/platform/Log.h>
 #include "../MainWindow.h"
-
+#include <QDebug>
 void log(const char * pszFormat, ...)
 {
     static const int MAX_LEN = 2000;
@@ -13,5 +13,9 @@ void log(const char * pszFormat, ...)
 
     MainWindow* w = MainWindow::getInstance();
     if(w)
+    {
+
         w->writeToLog(szBuf);
+    }
+    qDebug() << szBuf;
 }
