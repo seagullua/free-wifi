@@ -9,6 +9,7 @@
 #include "sqlite3.h"
 #include "freewifi/crypto/Random.h"
 #include "freewifi/crypto/Protect.h"
+#include "freewifi/crypto/Hash.h"
 
 //#include <iostream>
 Test::Test()
@@ -66,6 +67,13 @@ void testSQL()
 
     sqlite3_close(db);
 }
+void testHash()
+{
+    DataPtr data = Data::create("abc");
+
+    log("SHA256: "+Base64::encode(Hash::apply(data))->toString());
+}
+
 void testRandom()
 {
     log("Rand start");
@@ -139,6 +147,7 @@ void runTests()
     //testEncryption();
     testRandom();
     testSQL();
+    testHash();
     testEncryption();
     testSQL();
 
