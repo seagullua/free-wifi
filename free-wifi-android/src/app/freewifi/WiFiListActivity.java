@@ -90,7 +90,6 @@ public class WiFiListActivity extends Activity {
 			@Override
 			public void run() {
 				onClick();
-				// TODO: call function
 			}
 		}, 4000);
 
@@ -100,25 +99,38 @@ public class WiFiListActivity extends Activity {
 
 		// ListView lv = getListView();
 
-		// lv.setItemsCanFocus(true);
+		//lv.setItemsCanFocus(true);
 
-		OnItemClickListener listener = new OnItemClickListener() {
+		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> adapter, View v,
-					int position, long arg3) {
-				String value = (String) adapter.getItemAtPosition(position);
-
-				adapter.setSelection(position);
-				// assuming string and if you want to get the value on click of
-				// list item
-				// do what you intend to do on click of listview row
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                    long arg3) {
 				Toast.makeText(getApplicationContext(), "clicked item",
 						Toast.LENGTH_LONG).show();
+            }
+//			@Override
+//		      public void onItemClick(AdapterView<?> adapter, View v, int position,
+//		            long arg3) 
+//		      {
+//		            String value = (String)adapter.getItemAtPosition(position); 
+//		            Toast.makeText(getApplicationContext(), "clicked item",
+//							Toast.LENGTH_LONG).show();
+//		      }
+			//@Override
+//			public void onItemClick(AdapterView<?> adapter, View v,
+//					int position, long arg3) {
+//				String value = (String) adapter.getItemAtPosition(position);
+//
+//				adapter.setSelection(position);
+//				// assuming string and if you want to get the value on click of
+//				// list item
+//				// do what you intend to do on click of listview row
+//				Toast.makeText(getApplicationContext(), "clicked item",
+//						Toast.LENGTH_LONG).show();
+//
+//			}
+		});
 
-			}
-		};
-
-		lv.setOnItemClickListener(listener);
 	}
 
 	public void onClick() {

@@ -52,7 +52,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.wifiicon);
 
-		textView.setText(values.get(position).BSSID);
+		textView.setText(values.get(position).SSID);
 		status.setText(values.get(position).capabilities);
 
 		// Change the icon for Windows and iPhone
