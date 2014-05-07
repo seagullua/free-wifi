@@ -79,32 +79,11 @@ public class WiFiListActivity extends Activity {
 
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                     long arg3) {
-				Toast.makeText(getApplicationContext(), "clicked item",
+				Toast.makeText(getApplicationContext(), "clicked item" + position,
 						Toast.LENGTH_LONG).show();
             }
-//			@Override
-//		      public void onItemClick(AdapterView<?> adapter, View v, int position,
-//		            long arg3) 
-//		      {
-//		            String value = (String)adapter.getItemAtPosition(position); 
-//		            Toast.makeText(getApplicationContext(), "clicked item",
-//							Toast.LENGTH_LONG).show();
-//		      }
-			//@Override
-//			public void onItemClick(AdapterView<?> adapter, View v,
-//					int position, long arg3) {
-//				String value = (String) adapter.getItemAtPosition(position);
-//
-//				adapter.setSelection(position);
-//				// assuming string and if you want to get the value on click of
-//				// list item
-//				// do what you intend to do on click of listview row
-//				Toast.makeText(getApplicationContext(), "clicked item",
-//						Toast.LENGTH_LONG).show();
-//
-//			}
 		});
 
 	}

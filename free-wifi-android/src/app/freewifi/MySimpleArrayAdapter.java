@@ -1,7 +1,6 @@
 package app.freewifi;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -28,11 +27,6 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		this.values = arraylist;
 	}
 
-	// public void update(ArrayList<ScanResult> new_values) {
-	// values.clear();
-	// values.addAll(new_values);
-	// this.notifyDataSetChanged();
-	// }
 	@Override
 	public int getCount() {
 		return values.size();
