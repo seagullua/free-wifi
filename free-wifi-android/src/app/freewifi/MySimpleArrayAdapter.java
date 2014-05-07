@@ -45,7 +45,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		TextView textView = (TextView) rowView.findViewById(R.id.name);
 		TextView status = (TextView) rowView.findViewById(R.id.status);
 
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.wifiicon);
+		ImageView wifi_icon = (ImageView) rowView.findViewById(R.id.wifiicon);
 
 		textView.setText(values.get(position).SSID);
 		status.setText(values.get(position).capabilities);
@@ -63,6 +63,19 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		// add signal level
 		int rssi = values.get(position).level;
 		rssi = WifiManager.calculateSignalLevel(rssi, 5);
+		
+		if(rssi == 2)
+		{
+			wifi_icon.setImageResource(R.drawable.x_2_72_hdpi);
+		}
+		else if(rssi == 3)
+		{
+			wifi_icon.setImageResource(R.drawable.x_3_72_hdpi);
+		}
+		else if(rssi == 4)
+		{
+			wifi_icon.setImageResource(R.drawable.x_4_72_hdpi);
+		}
 		
 		// Change the icon for Windows and iPhone
 		// String s = values[position];
