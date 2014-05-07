@@ -19,7 +19,7 @@ public class WiFiDetail extends Fragment {
   }
 
   public void setText(String item) {
-    TextView view = (TextView) getView().findViewById(R.id.detailsText);
+    TextView view = (TextView) getView().findViewById(R.id.name);
     view.setText(item);
   }
 } 
