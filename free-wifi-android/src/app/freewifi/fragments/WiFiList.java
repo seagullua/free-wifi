@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import app.freewifi.R;
 
 public class WiFiList extends Fragment {
@@ -17,15 +19,29 @@ public class WiFiList extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_list,
-        container, false);
-    Button button = (Button) view.findViewById(R.id.button1);
-    button.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        updateDetail();
-      }
-    });
+//    View view = inflater.inflate(R.layout.fragment_list,
+//        container, false);
+	  View view = inflater.inflate(R.layout.wifilist_activity,
+		        container, false);
+//    Button button = (Button) view.findViewById(R.id.button1);
+//    button.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        updateDetail();
+//      }
+//    });
+	  
+	  ListView lv = (ListView) view.findViewById(R.id.list1);
+	  lv.setOnItemClickListener(new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			// TODO: Change the code
+			updateDetail();
+		}
+	});
+	  
     return view;
   }
 
