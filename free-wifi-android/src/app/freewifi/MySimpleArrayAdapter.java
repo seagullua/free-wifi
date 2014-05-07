@@ -18,8 +18,8 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
 	private final ArrayList<ScanResult> values;
 
-	private int selectedIndex;
-	private int selectedColor = Color.parseColor("#1b1b1b");
+	//private int selectedIndex;
+	//private int selectedColor = Color.parseColor("#1b1b1b");
 
 	public MySimpleArrayAdapter(Context context, ArrayList<ScanResult> arraylist) {
 		super(context, R.layout.rowlayout);
@@ -48,7 +48,8 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		ImageView wifi_icon = (ImageView) rowView.findViewById(R.id.wifiicon);
 
 		textView.setText(values.get(position).SSID);
-		status.setText(values.get(position).capabilities);
+		//status.setText(values.get(position).capabilities);
+		status.setText("");
 
 		String is_free = "free";
 		if (values.get(position).capabilities.contains("WEP")
@@ -64,30 +65,29 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		int rssi = values.get(position).level;
 		rssi = WifiManager.calculateSignalLevel(rssi, 5);
 		
-		if(rssi == 2)
+		if(is_free == "keyed")
 		{
-			wifi_icon.setImageResource(R.drawable.x_2_72_hdpi);
+			if (rssi == 1)
+				wifi_icon.setImageResource(R.drawable.x_1_72_lock_hdpi);
+			else if(rssi == 2)
+				wifi_icon.setImageResource(R.drawable.x_2_72_lock_hdpi);
+			else if(rssi == 3)
+				wifi_icon.setImageResource(R.drawable.x_3_72_lock_hdpi);
+			else if(rssi == 4)
+				wifi_icon.setImageResource(R.drawable.x_4_72_lock_hdpi);
 		}
-		else if(rssi == 3)
+		else
 		{
-			wifi_icon.setImageResource(R.drawable.x_3_72_hdpi);
-		}
-		else if(rssi == 4)
-		{
-			wifi_icon.setImageResource(R.drawable.x_4_72_hdpi);
+			if(rssi == 2)
+				wifi_icon.setImageResource(R.drawable.x_2_72_hdpi);
+			else if(rssi == 3)
+				wifi_icon.setImageResource(R.drawable.x_3_72_hdpi);
+			else if(rssi == 4)
+				wifi_icon.setImageResource(R.drawable.x_4_72_hdpi);
 		}
 		
-		// Change the icon for Windows and iPhone
-		// String s = values[position];
-		//
-		// if (s.startsWith("Windows7") || s.startsWith("iPhone")
-		// || s.startsWith("Solaris")) {
-		// //TODO: change imagine
-		// imageView.setImageResource(R.drawable.ic_launcher);
-		// } else {
-		// imageView.setImageResource(R.drawable.ic_launcher);
-		// }
-		Log.d("free", "Item" + values.get(position).BSSID);
+
+		//Log.d("free", "Item" + values.get(position).BSSID);
 		return rowView;
 	}
 }
