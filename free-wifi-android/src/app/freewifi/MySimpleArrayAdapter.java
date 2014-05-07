@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,20 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		textView.setText(values.get(position).SSID);
 		status.setText(values.get(position).capabilities);
 
+		String is_free = "free";
+		if (values.get(position).capabilities.contains("WEP")
+				|| values.get(position).capabilities.contains("WPA")
+				|| values.get(position).capabilities.contains("WPS")
+				|| values.get(position).capabilities.contains("PSK")
+				|| values.get(position).capabilities.contains("CCMP")
+				|| values.get(position).capabilities.contains("TKIP")) {
+			is_free = "keyed";
+		}
+		
+		// add signal level
+		int rssi = values.get(position).level;
+		rssi = WifiManager.calculateSignalLevel(rssi, 5);
+		
 		// Change the icon for Windows and iPhone
 		// String s = values[position];
 		//
