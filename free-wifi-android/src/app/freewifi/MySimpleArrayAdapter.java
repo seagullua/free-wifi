@@ -18,8 +18,8 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
 	private final ArrayList<ScanResult> values;
 
-	//private int selectedIndex;
-	//private int selectedColor = Color.parseColor("#1b1b1b");
+	// private int selectedIndex;
+	// private int selectedColor = Color.parseColor("#1b1b1b");
 
 	public MySimpleArrayAdapter(Context context, ArrayList<ScanResult> arraylist) {
 		super(context, R.layout.rowlayout);
@@ -31,23 +31,20 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	public int getCount() {
 		return values.size();
 	}
-	
-    public ScanResult getMyItem(int arg0) {
-        if(null != values){
-            try {
-                return values.get(arg0);
-            } catch (IndexOutOfBoundsException e) {
-                return null;
-            }
-        }
-        return null;
-    }
+
+	public ScanResult getMyItem(int arg0) {
+		if (null != values) {
+			try {
+				return values.get(arg0);
+			} catch (IndexOutOfBoundsException e) {
+				return null;
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-
-		Log.d("IN GET VIEW", "in getView");
-
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -59,7 +56,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		ImageView wifi_icon = (ImageView) rowView.findViewById(R.id.wifiicon);
 
 		textView.setText(values.get(position).SSID);
-		//status.setText(values.get(position).capabilities);
+		// status.setText(values.get(position).capabilities);
 		status.setText("");
 
 		String is_free = "free";
@@ -71,34 +68,30 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 				|| values.get(position).capabilities.contains("TKIP")) {
 			is_free = "keyed";
 		}
-		
+
 		// add signal level
 		int rssi = values.get(position).level;
 		rssi = WifiManager.calculateSignalLevel(rssi, 5);
-		
-		if(is_free == "keyed")
-		{
+
+		if (is_free == "keyed") {
 			if (rssi == 1)
 				wifi_icon.setImageResource(R.drawable.x_1_72_lock_hdpi);
-			else if(rssi == 2)
+			else if (rssi == 2)
 				wifi_icon.setImageResource(R.drawable.x_2_72_lock_hdpi);
-			else if(rssi == 3)
+			else if (rssi == 3)
 				wifi_icon.setImageResource(R.drawable.x_3_72_lock_hdpi);
-			else if(rssi == 4)
+			else if (rssi == 4)
 				wifi_icon.setImageResource(R.drawable.x_4_72_lock_hdpi);
-		}
-		else
-		{
-			if(rssi == 2)
+		} else {
+			if (rssi == 2)
 				wifi_icon.setImageResource(R.drawable.x_2_72_hdpi);
-			else if(rssi == 3)
+			else if (rssi == 3)
 				wifi_icon.setImageResource(R.drawable.x_3_72_hdpi);
-			else if(rssi == 4)
+			else if (rssi == 4)
 				wifi_icon.setImageResource(R.drawable.x_4_72_hdpi);
 		}
-		
 
-		//Log.d("free", "Item" + values.get(position).BSSID);
+		// Log.d("free", "Item" + values.get(position).BSSID);
 		return rowView;
 	}
 }

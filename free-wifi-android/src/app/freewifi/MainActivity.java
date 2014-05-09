@@ -12,6 +12,7 @@ import java.util.List;
 
 import app.freewifi.fragments.*;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -46,6 +47,8 @@ public class MainActivity extends Activity implements
 		public void onReceive(Context c, Intent intent) {
 			results = wifi.getScanResults();
 			size = results.size();
+
+			onClick();
 		}
 	};
 	IntentFilter filter = new IntentFilter(
@@ -75,30 +78,31 @@ public class MainActivity extends Activity implements
 		lv.setAdapter(adapter);
 
 		wifi.startScan();
-		registerReceiver(reciever, filter);
+		//registerReceiver(reciever, filter);
 
 		Toast.makeText(this, "Scanning....", Toast.LENGTH_SHORT).show();
+
+		 final Handler handler = new Handler();
+		 handler.postDelayed(new Runnable() {
+		 @Override
+		 public void run() {
+			 rescan();
+		 }
+		 }, 10000);
+
+	}
+
+	private void rescan() {
+		wifi.startScan();
+		//registerReceiver(reciever, filter);
+
 		final Handler handler = new Handler();
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				onClick();
+				rescan();
 			}
-		}, 4000);
-
-		// lv.setOnItemClickListener(new OnItemClickListener() {
-		// @Override
-		// public void onItemClick(AdapterView<?> arg0,
-		// View arg1,
-		// int position,
-		// long arg3) {
-		// Toast.makeText(getApplicationContext(), "clicked item" + position,
-		// Toast.LENGTH_LONG).show();
-		//
-		// //TODO: update Detail Fragment
-		// updateLandscapeDetail(position);
-		// }
-		// });
+		}, 10000);
 	}
 
 	public void onClick() {
@@ -121,23 +125,30 @@ public class MainActivity extends Activity implements
 
 	}
 
-	private void updateLandscapeDetail(int position) {
-		ScanResult item = adapter.getMyItem(position);
-		TextView name = (TextView) findViewById(R.id.name);
-		name.setText(item.BSSID);
-	}
+	@Override
+    public void onPause() {
 
+        super.onPause();
+        unregisterReceiver(reciever);
+    }
+	
+	@Override
+    public void onResume() {
+
+        super.onResume();
+        registerReceiver(reciever, filter);
+    }
 	@Override
 	public void onRssItemSelected(int position) {
-		
+
 		ScanResult item = adapter.getMyItem(position);
-		
+
 		WiFiDetail fragment = (WiFiDetail) getFragmentManager()
 				.findFragmentById(R.id.detailFragment);
 		if (fragment != null && fragment.isInLayout()) {
 			fragment.setName(item.SSID);
 		} else {
-			
+
 			Intent intent = new Intent(getApplicationContext(),
 					DetailActivity.class);
 			intent.putExtra(DetailActivity.NAME, item.BSSID);
