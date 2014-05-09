@@ -39,6 +39,7 @@ public class MainActivity extends Activity implements
 	TextView textStatus;
 	Button buttonScan;
 	int size = 0;
+	// scan result
 	List<ScanResult> results;
 	MySimpleArrayAdapter adapter;
 
@@ -54,14 +55,15 @@ public class MainActivity extends Activity implements
 	IntentFilter filter = new IntentFilter(
 			WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
 
-	ArrayList<ScanResult> arraylist = new ArrayList<ScanResult>();
+	// our in program container
+	ArrayList<WiFi> arraylist = new ArrayList<WiFi>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_main);
-		Log.d("TAG", String.valueOf(addNumbers(3, 5)));
+		// Log.d("TAG", String.valueOf(addNumbers(3, 5)));
 
 		lv = (ListView) findViewById(R.id.list1);
 
@@ -78,23 +80,23 @@ public class MainActivity extends Activity implements
 		lv.setAdapter(adapter);
 
 		wifi.startScan();
-		//registerReceiver(reciever, filter);
+		// registerReceiver(reciever, filter);
 
 		Toast.makeText(this, "Scanning....", Toast.LENGTH_SHORT).show();
 
-		 final Handler handler = new Handler();
-		 handler.postDelayed(new Runnable() {
-		 @Override
-		 public void run() {
-			 rescan();
-		 }
-		 }, 10000);
+		final Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				rescan();
+			}
+		}, 10000);
 
 	}
 
 	private void rescan() {
 		wifi.startScan();
-		//registerReceiver(reciever, filter);
+		// registerReceiver(reciever, filter);
 
 		final Handler handler = new Handler();
 		handler.postDelayed(new Runnable() {
@@ -113,7 +115,12 @@ public class MainActivity extends Activity implements
 			size = size - 1;
 			while (size >= 0) {
 				ScanResult item = results.get(size);
-				arraylist.add(item);
+
+				boolean is_keyed = isKeyedWiFi(item);
+				// TODO: calculate
+				WiFi curr_net = new WiFi(item.SSID, item.BSSID, item.level,
+						is_keyed);
+				arraylist.add(curr_net);
 				size--;
 			}
 
@@ -125,23 +132,36 @@ public class MainActivity extends Activity implements
 
 	}
 
-	@Override
-    public void onPause() {
+	private boolean isKeyedWiFi(ScanResult item) {
+		if (item.capabilities.contains("WEP")
+				|| item.capabilities.contains("WPA")
+				|| item.capabilities.contains("WPS")
+				|| item.capabilities.contains("PSK")
+				|| item.capabilities.contains("CCMP")
+				|| item.capabilities.contains("TKIP")) {
+			return true;
+		}
+		return false;
+	}
 
-        super.onPause();
-        unregisterReceiver(reciever);
-    }
-	
 	@Override
-    public void onResume() {
+	public void onPause() {
 
-        super.onResume();
-        registerReceiver(reciever, filter);
-    }
+		super.onPause();
+		unregisterReceiver(reciever);
+	}
+
+	@Override
+	public void onResume() {
+
+		super.onResume();
+		registerReceiver(reciever, filter);
+	}
+
 	@Override
 	public void onRssItemSelected(int position) {
 
-		ScanResult item = adapter.getMyItem(position);
+		WiFi item = adapter.getMyItem(position);
 
 		WiFiDetail fragment = (WiFiDetail) getFragmentManager()
 				.findFragmentById(R.id.detailFragment);
@@ -153,7 +173,7 @@ public class MainActivity extends Activity implements
 					DetailActivity.class);
 			intent.putExtra(DetailActivity.NAME, item.BSSID);
 
-			int rssi = item.level;
+			int rssi = item.rssi;
 			rssi = WifiManager.calculateSignalLevel(rssi, 5);
 			intent.putExtra(DetailActivity.SIGNAL, String.valueOf(rssi));
 

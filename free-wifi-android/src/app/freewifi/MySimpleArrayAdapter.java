@@ -16,12 +16,12 @@ import android.widget.TextView;
 
 public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
-	private final ArrayList<ScanResult> values;
+	private final ArrayList<WiFi> values;
 
 	// private int selectedIndex;
 	// private int selectedColor = Color.parseColor("#1b1b1b");
 
-	public MySimpleArrayAdapter(Context context, ArrayList<ScanResult> arraylist) {
+	public MySimpleArrayAdapter(Context context, ArrayList<WiFi> arraylist) {
 		super(context, R.layout.rowlayout);
 		this.context = context;
 		this.values = arraylist;
@@ -32,7 +32,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		return values.size();
 	}
 
-	public ScanResult getMyItem(int arg0) {
+	public WiFi getMyItem(int arg0) {
 		if (null != values) {
 			try {
 				return values.get(arg0);
@@ -59,21 +59,13 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		// status.setText(values.get(position).capabilities);
 		status.setText("");
 
-		String is_free = "free";
-		if (values.get(position).capabilities.contains("WEP")
-				|| values.get(position).capabilities.contains("WPA")
-				|| values.get(position).capabilities.contains("WPS")
-				|| values.get(position).capabilities.contains("PSK")
-				|| values.get(position).capabilities.contains("CCMP")
-				|| values.get(position).capabilities.contains("TKIP")) {
-			is_free = "keyed";
-		}
+		boolean keyed = values.get(position).keyed;
 
 		// add signal level
-		int rssi = values.get(position).level;
+		int rssi = values.get(position).rssi;
 		rssi = WifiManager.calculateSignalLevel(rssi, 5);
 
-		if (is_free == "keyed") {
+		if (keyed) {
 			if (rssi == 1)
 				wifi_icon.setImageResource(R.drawable.x_1_72_lock_hdpi);
 			else if (rssi == 2)

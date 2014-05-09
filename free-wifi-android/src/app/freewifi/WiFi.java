@@ -4,7 +4,7 @@ package app.freewifi;
 public class WiFi {
 	String SSID; //name
 	String BSSID; //identifier
-	int converted_rssi;//0-100
+	int rssi;//normal
 	boolean keyed;
 	
 	//special for C++ part
@@ -12,11 +12,11 @@ public class WiFi {
 	boolean share;
 	boolean has_password; //has pass in our BD
 	
-	public WiFi(String name, String bssid, int rssi, boolean keyed_value)
+	public WiFi(String name, String bssid, int new_rssi, boolean keyed_value)
 	{
 		SSID = name;
 		BSSID = bssid;
-		converted_rssi = rssi;
+		rssi = new_rssi;
 		keyed = keyed_value;
 	}
 	
