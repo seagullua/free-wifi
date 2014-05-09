@@ -31,6 +31,17 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	public int getCount() {
 		return values.size();
 	}
+	
+    public ScanResult getMyItem(int arg0) {
+        if(null != values){
+            try {
+                return values.get(arg0);
+            } catch (IndexOutOfBoundsException e) {
+                return null;
+            }
+        }
+        return null;
+    }
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

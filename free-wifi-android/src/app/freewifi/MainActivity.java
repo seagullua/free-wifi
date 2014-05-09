@@ -30,10 +30,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-
 public class MainActivity extends Activity implements
 		WiFiList.OnItemSelectedListener {
-	
+
 	WifiManager wifi;
 	ListView lv;
 	TextView textStatus;
@@ -54,17 +53,15 @@ public class MainActivity extends Activity implements
 
 	ArrayList<ScanResult> arraylist = new ArrayList<ScanResult>();
 
-	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.activity_main);
-		Log.d("TAG", String.valueOf(addNumbers(3,5)));
-		
+		Log.d("TAG", String.valueOf(addNumbers(3, 5)));
+
 		lv = (ListView) findViewById(R.id.list1);
-		
+
 		wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		if (wifi.isWifiEnabled() == false) {
 			Toast.makeText(getApplicationContext(),
@@ -88,18 +85,22 @@ public class MainActivity extends Activity implements
 				onClick();
 			}
 		}, 4000);
-		
-		
-//		lv.setOnItemClickListener(new OnItemClickListener() {
-//			@Override
-//            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-//                    long arg3) {
-//				Toast.makeText(getApplicationContext(), "clicked item" + position,
-//						Toast.LENGTH_LONG).show();
-//            }
-//		});
+
+		// lv.setOnItemClickListener(new OnItemClickListener() {
+		// @Override
+		// public void onItemClick(AdapterView<?> arg0,
+		// View arg1,
+		// int position,
+		// long arg3) {
+		// Toast.makeText(getApplicationContext(), "clicked item" + position,
+		// Toast.LENGTH_LONG).show();
+		//
+		// //TODO: update Detail Fragment
+		// updateLandscapeDetail(position);
+		// }
+		// });
 	}
-	
+
 	public void onClick() {
 		arraylist.clear();
 		// wifi.startScan();
@@ -111,29 +112,44 @@ public class MainActivity extends Activity implements
 				arraylist.add(item);
 				size--;
 			}
-			
+
 			adapter.notifyDataSetChanged();
-			
-			//Log.d("free", "Notify" + String.valueOf(arraylist.size()));
+
+			// Log.d("free", "Notify" + String.valueOf(arraylist.size()));
 		} catch (Exception e) {
 		}
 
 	}
 
-	@Override
-	public void onRssItemSelected(String link) {
-		 WiFiDetail fragment = (WiFiDetail) getFragmentManager().findFragmentById(R.id.detailFragment);
-		 if (fragment != null && fragment.isInLayout()) {
-			 fragment.setText(link);
-		 } else {
-			 Intent intent = new Intent(getApplicationContext(),
-					 DetailActivity.class);
-			 intent.putExtra(DetailActivity.EXTRA_URL, link);
-			 startActivity(intent);
-		 }
+	private void updateLandscapeDetail(int position) {
+		ScanResult item = adapter.getMyItem(position);
+		TextView name = (TextView) findViewById(R.id.name);
+		name.setText(item.BSSID);
+	}
 
-		//Intent intent = new Intent(this, WiFiListActivity.class);
-		//startActivity(intent);
+	@Override
+	public void onRssItemSelected(int position) {
+		
+		ScanResult item = adapter.getMyItem(position);
+		
+		WiFiDetail fragment = (WiFiDetail) getFragmentManager()
+				.findFragmentById(R.id.detailFragment);
+		if (fragment != null && fragment.isInLayout()) {
+			fragment.setName(item.SSID);
+		} else {
+			
+			Intent intent = new Intent(getApplicationContext(),
+					DetailActivity.class);
+			intent.putExtra(DetailActivity.NAME, item.BSSID);
+
+			int rssi = item.level;
+			rssi = WifiManager.calculateSignalLevel(rssi, 5);
+			intent.putExtra(DetailActivity.SIGNAL, String.valueOf(rssi));
+
+			intent.putExtra(DetailActivity.BSSID, item.SSID);
+			startActivity(intent);
+		}
+
 	}
 
 	native public static int addNumbers(int a, int b);

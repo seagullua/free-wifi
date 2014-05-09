@@ -35,10 +35,11 @@ public class WiFiList extends Fragment {
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 
 		@Override
-		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
+		public void onItemClick(AdapterView<?> arg0, View view, 
+				int position,
+				long id) {
 			// TODO: Change the code
-			updateDetail();
+			updateDetail(position);
 		}
 	});
 	  
@@ -46,7 +47,7 @@ public class WiFiList extends Fragment {
   }
 
   public interface OnItemSelectedListener {
-    public void onRssItemSelected(String link);
+    public void onRssItemSelected(int position);
   }
 
   @Override
@@ -67,13 +68,8 @@ public class WiFiList extends Fragment {
   }
 
   // may also be triggered from the Activity
-  public void updateDetail() {
-    // create a string just for testing
-    String newTime = String.valueOf(System.currentTimeMillis());
-
-    // inform the Activity about the change based
-    // interface defintion
-    listener.onRssItemSelected(newTime);
+  public void updateDetail(int position) {
+    listener.onRssItemSelected(position);
   }
 } 
 

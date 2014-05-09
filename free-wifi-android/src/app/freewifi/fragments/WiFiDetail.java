@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import app.freewifi.R;
 
@@ -15,11 +16,18 @@ public class WiFiDetail extends Fragment {
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_detail,
         container, false);
+    
     return view;
   }
 
-  public void setText(String item) {
+  public void setName(String item) {
     TextView view = (TextView) getView().findViewById(R.id.name);
     view.setText(item);
+  }
+  
+  public void setSignalLevel(String level)
+  {
+	  ImageView view = (ImageView) getView().findViewById(R.id.signal);
+	  
   }
 } 
