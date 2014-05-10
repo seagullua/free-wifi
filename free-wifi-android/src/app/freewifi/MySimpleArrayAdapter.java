@@ -55,13 +55,13 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		// status.setText(values.get(position).capabilities);
 		status.setText("");
 
-		boolean keyed = values.get(position).is_open;
+		boolean is_open = values.get(position).is_open;
 
 		// add signal level
 		int rssi = values.get(position).rssi;
 		rssi = WifiManager.calculateSignalLevel(rssi, 5);
 
-		if (keyed) {
+		if (!is_open) {
 			if (rssi == 1)
 				wifi_icon.setImageResource(R.drawable.x_1_72_lock_hdpi);
 			else if (rssi == 2)

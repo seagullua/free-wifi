@@ -12,12 +12,12 @@ public class WiFi {
 	public boolean share=true;
 	public boolean has_password=false; //has pass in our BD
 	
-	public WiFi(String name, String bssid, int new_rssi, boolean keyed_value)
+	public WiFi(String name, String bssid, int new_rssi, boolean is_open_net)
 	{
 		SSID = name;
 		BSSID = bssid;
 		rssi = new_rssi;
-		is_open = keyed_value;
+		is_open = is_open_net;
 	}
 	
 	public void setAutoConnect(boolean connect)

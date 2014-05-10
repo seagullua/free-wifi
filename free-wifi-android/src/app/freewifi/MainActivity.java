@@ -116,10 +116,10 @@ public class MainActivity extends Activity implements
 			while (size >= 0) {
 				ScanResult item = results.get(size);
 
-				boolean is_keyed = isKeyedWiFi(item);
+				boolean is_open = isOpenWiFi(item);
 				// TODO: calculate
 				WiFi curr_net = new WiFi(item.SSID, item.BSSID, item.level,
-						is_keyed);
+						is_open);
 				arraylist.add(curr_net);
 				size--;
 			}
@@ -132,16 +132,16 @@ public class MainActivity extends Activity implements
 
 	}
 
-	private boolean isKeyedWiFi(ScanResult item) {
+	private boolean isOpenWiFi(ScanResult item) {
 		if (item.capabilities.contains("WEP")
 				|| item.capabilities.contains("WPA")
 				|| item.capabilities.contains("WPS")
 				|| item.capabilities.contains("PSK")
 				|| item.capabilities.contains("CCMP")
 				|| item.capabilities.contains("TKIP")) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
