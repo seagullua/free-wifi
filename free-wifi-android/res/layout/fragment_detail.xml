@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/app.freewifi"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d2d2d2"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#d2d2d2" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="28dp"
-            android:textSize="24sp"
-            android:text="WiFiName" />
-
-        <ImageView
-            android:id="@+id/signal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/x_1_72_hdpi" />
+        android:layout_height="wrap_content"
+         >
 
         <EditText
             android:id="@+id/pass"
@@ -35,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/signal"
             android:layout_centerHorizontal="true"
-            android:hint="@string/Password"
             android:ems="10"
+            android:hint="@string/Password"
             android:inputType="textPassword" />
 
         <Button
@@ -56,8 +38,8 @@
             android:layout_alignRight="@+id/button_connect"
             android:layout_below="@+id/button_connect"
             android:layout_marginTop="30dp"
-            android:textSize="16sp"
-            android:text="@string/share" />
+            android:text="@string/share"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/forget"
@@ -68,6 +50,25 @@
             android:layout_below="@+id/share"
             android:text="@string/forget" />
 
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="29dp"
+            android:text="WiFiName"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/signal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:src="@drawable/x_1_72_hdpi" />
+
     </RelativeLayout>
 
-</LinearLayout>
+</ScrollView>
