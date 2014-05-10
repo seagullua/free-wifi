@@ -8,8 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         >
+        android:layout_height="wrap_content" >
 
         <EditText
             android:id="@+id/pass"
@@ -68,6 +67,15 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp"
             android:src="@drawable/x_1_72_hdpi" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/forget"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/walnut" />
 
     </RelativeLayout>
 
