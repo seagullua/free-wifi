@@ -28,7 +28,8 @@ SOURCES += \
     ../freewifi/crypto/Protect.cpp \
     ../freewifi/crypto/Hash.cpp \
     ../freewifi/KeyStorage.cpp \
-    ../freewifi/WifiInfo.cpp
+    ../freewifi/WifiInfo.cpp \
+    ../freewifi/API.cpp
 
 HEADERS += \
     ../freewifi/Test.h \
@@ -40,7 +41,8 @@ HEADERS += \
     ../freewifi/crypto/Protect.h \
     ../freewifi/crypto/Hash.h \
     ../freewifi/KeyStorage.h \
-    ../freewifi/WifiInfo.h
+    ../freewifi/WifiInfo.h \
+    ../freewifi/API.h
 
 
 

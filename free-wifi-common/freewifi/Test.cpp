@@ -152,22 +152,22 @@ void testData()
 
 void runTests()
 {
-    //testEncryption();
-    testRandom();
-    testSQL();
-    testKeyStorage();
-    testHash();
-    testEncryption();
-    testSQL();
+//    //testEncryption();
+//    testRandom();
+//    testSQL();
+//    testKeyStorage();
+//    testHash();
+//    testEncryption();
+//    testSQL();
 
 
-    testData();
-    log("Test: %d", 54);
-    log("Test: %d", 53);
+//    testData();
+//    log("Test: %d", 54);
+//    log("Test: %d", 53);
 
 
-    json_error_t error;
-    json_t *root = json_loads("aaa", 0, &error);
+//    json_error_t error;
+//    json_t *root = json_loads("aaa", 0, &error);
 
 //    CURL *curl;
 //    CURLcode res;

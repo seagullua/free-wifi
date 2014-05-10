@@ -21,8 +21,16 @@ include($$PWD/../../free-wifi-common/proj.qt/free-wifi-common.pri)
 
 SOURCES += main.cpp\
         MainWindow.cpp \
-    platform/log.cpp
+    platform/log.cpp \
+    platform/WifiManagerAPI.cpp \
+    platform/FileSystemAPI.cpp \
+    platform/FreeWifiAPI.cpp \
+    platform/PlatformImpl.cpp
 
-HEADERS  += MainWindow.h
+HEADERS  += MainWindow.h \
+    platform/WifiManagerAPI.h \
+    platform/FileSystemAPI.h \
+    platform/FreeWifiAPI.h \
+    platform/PlatformImpl.h
 
 FORMS    += MainWindow.ui

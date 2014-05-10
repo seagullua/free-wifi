@@ -188,11 +188,6 @@ public class MainActivity extends Activity implements
 		}
 
 	}
-
-	native public static int addNumbers(int a, int b);
-
-	static {
-		System.loadLibrary("FreeWifi");
-	}
+	
 
 }

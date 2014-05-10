@@ -3,12 +3,14 @@
 //#undef JNIEXPORT
 //#define JNIEXPORT __attribute__ ((visibility("default")))
 
-#include <freewifi/Test.h>
+#include <freewifi/API.h>
+#include "platform/PlatformImpl.h"
 extern "C"
 {
-jint Java_app_freewifi_MainActivity_addNumbers(JNIEnv*  env, jclass, jint a, jint b)
+jint JNI_OnLoad(JavaVM *vm, void *reserved)
 {
-	runTests();
-	return 3;
+    //JniHelper::setJavaVM(vm);
+	API::getInstance()->init(API::PlatformPtr(new PlatformImpl));
+    return JNI_VERSION_1_4;
 }
 }
