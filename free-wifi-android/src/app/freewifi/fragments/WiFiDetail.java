@@ -69,7 +69,7 @@ public class WiFiDetail extends Fragment {
 	public void setBSSID(String bssid) {
 		// is this wifi connected or no
 		if (ConnectedNet.getInstance().hasConnectedWiFi()
-				&& ConnectedNet.getInstance().getConnectedWiFi() == bssid) {
+				&& ConnectedNet.getInstance().getConnectedWiFi().equals(bssid)) {
 			
 			EditText pass_field = (EditText) getView().findViewById(R.id.pass);
 			CheckBox share_box = (CheckBox) getView().findViewById(R.id.share);
