@@ -3,10 +3,7 @@ package app.freewifi;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +15,6 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
 	private final ArrayList<WiFi> values;
 
-	// private int selectedIndex;
-	// private int selectedColor = Color.parseColor("#1b1b1b");
 
 	public MySimpleArrayAdapter(Context context, ArrayList<WiFi> arraylist) {
 		super(context, R.layout.rowlayout);
@@ -85,5 +80,10 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
 		// Log.d("free", "Item" + values.get(position).BSSID);
 		return rowView;
+	}
+
+	public void changeRowColor(int position) {
+		
+		
 	}
 }

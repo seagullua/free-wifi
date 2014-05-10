@@ -1,7 +1,10 @@
 package app.freewifi.fragments;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,66 +13,88 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import app.freewifi.R;
+import app.freewifi.WiFi;
 
 public class WiFiList extends Fragment {
 
+	private OnItemSelectedListener listener;
 
-  private OnItemSelectedListener listener;
+	// private int selectedIndex;
+	private int selectedColor = Color.parseColor("#0a9dff");
+	private int normalColor = Color.parseColor("#ffffff");
 
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-//    View view = inflater.inflate(R.layout.fragment_list,
-//        container, false);
-	  View view = inflater.inflate(R.layout.wifilist_activity,
-		        container, false);
-//    Button button = (Button) view.findViewById(R.id.button1);
-//    button.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        updateDetail();
-//      }
-//    });
-	  
-	  ListView lv = (ListView) view.findViewById(R.id.list1);
-	  lv.setOnItemClickListener(new OnItemClickListener() {
+	private ArrayList<Integer> coloredItems = new ArrayList<Integer>();
 
-		@Override
-		public void onItemClick(AdapterView<?> arg0, View view, 
-				int position,
-				long id) {
-			// TODO: Change the code
-			updateDetail(position);
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// View view = inflater.inflate(R.layout.fragment_list,
+		// container, false);
+		View view = inflater.inflate(R.layout.wifilist_activity, container,
+				false);
+		// Button button = (Button) view.findViewById(R.id.button1);
+		// button.setOnClickListener(new View.OnClickListener() {
+		// @Override
+		// public void onClick(View v) {
+		// updateDetail();
+		// }
+		// });
+
+		final ListView lv = (ListView) view.findViewById(R.id.list1);
+		lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view,
+					int position, long id) {
+				// TODO: Change the code
+				updateDetail(position);
+				lv.setItemChecked(position, true);
+//				if (!coloredItems.contains(position)) 
+//				{					
+//					view.setBackgroundColor(selectedColor);
+//					
+//					// delete previous item
+//					if (!coloredItems.isEmpty()) 
+//					{
+//						int prev_position = coloredItems.get(0);
+//						View prev_view = lv.getChildAt(prev_position);
+//						prev_view.setBackgroundColor(normalColor);
+//					}
+//
+//					coloredItems.clear();
+//					coloredItems.add(position);
+//				}
+			}
+		});
+
+		return view;
+	}
+
+	public interface OnItemSelectedListener {
+		public void onRssItemSelected(int position);
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		if (activity instanceof OnItemSelectedListener) {
+			listener = (OnItemSelectedListener) activity;
+		} else {
+			throw new ClassCastException(activity.toString()
+					+ " must implemenet MyListFragment.OnItemSelectedListener");
 		}
-	});
-	  
-    return view;
-  }
+	}
 
-  public interface OnItemSelectedListener {
-    public void onRssItemSelected(int position);
-  }
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		listener = null;
+	}
 
-  @Override
-  public void onAttach(Activity activity) {
-    super.onAttach(activity);
-    if (activity instanceof OnItemSelectedListener) {
-      listener = (OnItemSelectedListener) activity;
-    } else {
-      throw new ClassCastException(activity.toString()
-          + " must implemenet MyListFragment.OnItemSelectedListener");
-    }
-  }
-
-  @Override
-  public void onDetach() {
-    super.onDetach();
-    listener = null;
-  }
-
-  // may also be triggered from the Activity
-  public void updateDetail(int position) {
-    listener.onRssItemSelected(position);
-  }
-} 
-
+	// may also be triggered from the Activity
+	public void updateDetail(int position) {
+		listener.onRssItemSelected(position);
+	}
+}

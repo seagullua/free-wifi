@@ -9,10 +9,7 @@ package app.freewifi;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import app.freewifi.fragments.*;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -22,14 +19,10 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity implements
 		WiFiList.OnItemSelectedListener {
@@ -159,8 +152,7 @@ public class MainActivity extends Activity implements
 	}
 
 	@Override
-	public void onRssItemSelected(int position) {
-
+	public void onRssItemSelected(int position) {		
 		WiFi item = adapter.getMyItem(position);
 
 		WiFiDetail fragment = (WiFiDetail) getFragmentManager()
