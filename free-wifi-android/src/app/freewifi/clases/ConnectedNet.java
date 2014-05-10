@@ -33,7 +33,7 @@ public class ConnectedNet {
 		return connected_BSSID;
 	}
 
-	public void findConnectedWiFi(Context context) {
+	public String findConnectedWiFi(Context context) {
 		String bssid = null;
 		ConnectivityManager connManager = (ConnectivityManager) context
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -53,5 +53,6 @@ public class ConnectedNet {
 			}
 		}
 		connected_BSSID = bssid;
+		return connected_BSSID;
 	}
 }

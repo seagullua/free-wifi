@@ -3,6 +3,7 @@ package app.freewifi;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.wifi.WifiManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import app.freewifi.clases.ConnectedNet;
 import app.freewifi.clases.WiFi;
 
 public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
 	private final ArrayList<WiFi> values;
+	private final String ConnectedColor ="#0c9bff";
 
 
 	public MySimpleArrayAdapter(Context context, ArrayList<WiFi> arraylist) {
@@ -46,13 +49,12 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
 		View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
 
-		TextView textView = (TextView) rowView.findViewById(R.id.name);
+		TextView name = (TextView) rowView.findViewById(R.id.name);
 		TextView status = (TextView) rowView.findViewById(R.id.status);
 
 		ImageView wifi_icon = (ImageView) rowView.findViewById(R.id.wifiicon);
 
-		textView.setText(values.get(position).SSID);
-		// status.setText(values.get(position).capabilities);
+		name.setText(values.get(position).SSID);
 		status.setText("");
 
 		boolean is_open = values.get(position).is_open;
@@ -79,7 +81,13 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 				wifi_icon.setImageResource(R.drawable.x_4_72_hdpi);
 		}
 
-		// Log.d("free", "Item" + values.get(position).BSSID);
+		//if it is connected net
+		if(ConnectedNet.getInstance().hasConnectedWiFi() &&
+				ConnectedNet.getInstance().getConnectedWiFi().equals(values.get(position).BSSID))
+		{
+			status.setText("Connected");
+			name.setTextColor(Color.parseColor(ConnectedColor));
+		}
 		return rowView;
 	}
 

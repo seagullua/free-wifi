@@ -1,10 +1,7 @@
 package app.freewifi.fragments;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.Fragment;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +10,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import app.freewifi.R;
-import app.freewifi.clases.WiFi;
 
 public class WiFiList extends Fragment {
 
 	private OnItemSelectedListener listener;
 
-	// private int selectedIndex;
-	private int selectedColor = Color.parseColor("#0a9dff");
-	private int normalColor = Color.parseColor("#ffffff");
-
-	private ArrayList<Integer> coloredItems = new ArrayList<Integer>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -123,6 +123,7 @@ public class MainActivity extends Activity implements
 			size = size - 1;
 			while (size >= 0) {
 				ScanResult item = results.get(size);
+				
 
 				boolean is_open = isOpenWiFi(item);
 				// TODO: calculate
