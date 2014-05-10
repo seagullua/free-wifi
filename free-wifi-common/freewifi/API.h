@@ -1,6 +1,7 @@
 #ifndef API_H
 #define API_H
 #include <memory>
+#include <string>
 
 class API
 {
@@ -21,6 +22,11 @@ public:
         public:
             virtual ~FileSystem()
             {}
+            /**
+             * @brief Returns writable path with slash at the end
+             * @return
+             */
+            virtual std::string getWritablePath()=0;
         };
         typedef std::shared_ptr<FileSystem> FileSystemAPI;
 

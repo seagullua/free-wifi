@@ -3,3 +3,8 @@
 FileSystemAPI::FileSystemAPI()
 {
 }
+
+std::string FileSystemAPI::getWritablePath()
+{
+    return "";
+}

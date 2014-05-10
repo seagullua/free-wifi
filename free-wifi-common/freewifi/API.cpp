@@ -9,8 +9,14 @@ void API::init(PlatformPtr platform_implementation)
         _api_freewifi = platform_implementation->getFreeWifiAPI();
         _api_wifimanager = platform_implementation->getWifiManagerAPI();
 
-        _init_performed = initDatabase();
-        log("Init finished successfully");
+        if(_api_filesystem && _api_freewifi && _api_wifimanager)
+        {
+            log("Writable Path: "+_api_filesystem->getWritablePath());
+
+            _init_performed = initDatabase();
+            log("Init finished successfully");
+        }
+
     }
 }
 
