@@ -9,6 +9,9 @@ package app.freewifi;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import app.freewifi.clases.ConnectedNet;
+import app.freewifi.clases.WiFi;
 import app.freewifi.fragments.*;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -50,13 +53,17 @@ public class MainActivity extends Activity implements
 
 	// our in program container
 	ArrayList<WiFi> arraylist = new ArrayList<WiFi>();
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_main);
-		// Log.d("TAG", String.valueOf(addNumbers(3, 5)));
+		
+		//find connected wifi
+		ConnectedNet.getInstance().findConnectedWiFi(getApplicationContext());
 
 		lv = (ListView) findViewById(R.id.list1);
 
@@ -163,13 +170,20 @@ public class MainActivity extends Activity implements
 
 			Intent intent = new Intent(getApplicationContext(),
 					DetailActivity.class);
-			intent.putExtra(DetailActivity.NAME, item.BSSID);
+			intent.putExtra(DetailActivity.BSSID, item.BSSID);
 
 			int rssi = item.rssi;
 			rssi = WifiManager.calculateSignalLevel(rssi, 5);
 			intent.putExtra(DetailActivity.SIGNAL, String.valueOf(rssi));
 
-			intent.putExtra(DetailActivity.BSSID, item.SSID);
+			intent.putExtra(DetailActivity.SSID, item.SSID);
+			
+			//set has we key or is it free
+			String is_open = "false";
+			if(item.is_open || item.has_password)
+				is_open = "true";
+			intent.putExtra(DetailActivity.OPEN, is_open);
+			
 			startActivity(intent);
 		}
 

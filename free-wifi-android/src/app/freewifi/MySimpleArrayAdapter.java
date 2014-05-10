@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import app.freewifi.clases.WiFi;
 
 public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
@@ -54,7 +55,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		// status.setText(values.get(position).capabilities);
 		status.setText("");
 
-		boolean keyed = values.get(position).keyed;
+		boolean keyed = values.get(position).is_open;
 
 		// add signal level
 		int rssi = values.get(position).rssi;

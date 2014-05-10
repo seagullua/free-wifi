@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import app.freewifi.R;
-import app.freewifi.WiFi;
+import app.freewifi.clases.WiFi;
 
 public class WiFiList extends Fragment {
 

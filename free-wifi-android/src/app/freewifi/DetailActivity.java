@@ -7,9 +7,10 @@ import android.os.Bundle;
 import app.freewifi.fragments.*;
 
 public class DetailActivity extends Activity {
-  public static final String NAME = "WiFi";
+  public static final String BSSID = "key";
   public static final String SIGNAL = "1";
-  public static final String BSSID = "WiFi";
+  public static final String SSID = "WIFiName";
+  public static final String OPEN = "true"; //we has pass in BD or it is open
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class DetailActivity extends Activity {
     setContentView(R.layout.activity_detail);
     Bundle extras = getIntent().getExtras();
     if (extras != null) {
-      String ssid = extras.getString(NAME);
+      String ssid = extras.getString(SSID);
       WiFiDetail detailFragment = (WiFiDetail) getFragmentManager()
           .findFragmentById(R.id.detailFragment);
       detailFragment.setName(ssid);

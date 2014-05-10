@@ -1,23 +1,23 @@
-package app.freewifi;
+package app.freewifi.clases;
 
 
 public class WiFi {
-	String SSID; //name
-	String BSSID; //identifier
-	int rssi;//normal
-	boolean keyed;
+	public String SSID; //name
+	public String BSSID; //identifier
+	public int rssi;//normal
+	public boolean is_open;
 	
 	//special for C++ part
-	boolean connect_automatically;
-	boolean share;
-	boolean has_password; //has pass in our BD
+	public boolean connect_automatically=false;
+	public boolean share=true;
+	public boolean has_password=false; //has pass in our BD
 	
 	public WiFi(String name, String bssid, int new_rssi, boolean keyed_value)
 	{
 		SSID = name;
 		BSSID = bssid;
 		rssi = new_rssi;
-		keyed = keyed_value;
+		is_open = keyed_value;
 	}
 	
 	public void setAutoConnect(boolean connect)
