@@ -18,7 +18,8 @@
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:hint="@string/Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/button_connect"
@@ -27,7 +28,8 @@
             android:layout_alignLeft="@+id/pass"
             android:layout_alignRight="@+id/pass"
             android:layout_below="@+id/pass"
-            android:text="@string/connect_button" />
+            android:text="@string/connect_button"
+            android:visibility="gone" />
 
         <CheckBox
             android:id="@+id/share"
@@ -38,7 +40,8 @@
             android:layout_below="@+id/button_connect"
             android:layout_marginTop="30dp"
             android:text="@string/share"
-            android:textSize="16sp" />
+            android:textSize="16sp" 
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/forget"
@@ -47,7 +50,8 @@
             android:layout_alignLeft="@+id/share"
             android:layout_alignRight="@+id/share"
             android:layout_below="@+id/share"
-            android:text="@string/forget" />
+            android:text="@string/forget"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/name"
@@ -56,7 +60,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="29dp"
-            android:text="WiFiName"
+            android:text="@string/choose_wifi"
             android:textSize="24sp" />
 
         <ImageView
@@ -66,10 +70,11 @@
             android:layout_below="@+id/name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="26dp"
-            android:src="@drawable/x_1_72_hdpi" />
+            android:src="@drawable/x_1_72_hdpi"
+            android:visibility="gone"  />
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/emblem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/forget"

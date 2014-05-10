@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import app.freewifi.R;
 import app.freewifi.clases.ConnectedNet;
@@ -35,7 +36,10 @@ public class WiFiDetail extends Fragment {
 		CheckBox share_box = (CheckBox) getView().findViewById(R.id.share);
 		Button connect_button = (Button) getView().findViewById(R.id.button_connect);
 		Button forgett_button = (Button) getView().findViewById(R.id.forget);
+		ImageView signal_img = (ImageView) getView().findViewById(R.id.signal);
 
+		signal_img.setVisibility(View.VISIBLE);
+		
 		if (is_open == "true" || has_password == "true" ||
 				(is_open == "false" && has_password == "true")) {
 			
@@ -75,6 +79,8 @@ public class WiFiDetail extends Fragment {
 			CheckBox share_box = (CheckBox) getView().findViewById(R.id.share);
 			Button connect_button = (Button) getView().findViewById(R.id.button_connect);
 			Button forgett_button = (Button) getView().findViewById(R.id.forget);
+			ImageView signal_img = (ImageView) getView().findViewById(R.id.signal);
+
 			
 			//HIDE
 			// hide password EditText field
@@ -88,6 +94,7 @@ public class WiFiDetail extends Fragment {
 			
 			//SHOW
 			forgett_button.setVisibility(View.VISIBLE);
+			signal_img.setVisibility(View.VISIBLE);
 		}
 	}
 }

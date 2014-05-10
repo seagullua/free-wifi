@@ -9,5 +9,6 @@
     <string name ="Password">Password</string>
     <string name="share">Share Password</string>
     <string name="forget">Forget WiFi</string>
+    <string name="choose_wifi">Choose a WiFi</string>
 
 </resources>
