@@ -159,30 +159,46 @@ public class MainActivity extends Activity implements
 	}
 
 	@Override
-	public void onRssItemSelected(int position) {		
+	public void onRssItemSelected(int position) {
+		
 		WiFi item = adapter.getMyItem(position);
+		
+		//signal level [1-5]
+		int rssi = item.rssi;
+		rssi = WifiManager.calculateSignalLevel(rssi, 5);
+		
+		//set is it free
+		String is_open = "false";
+		if(item.is_open)
+			is_open = "true";
+		
+		//set has we pass in our DB
+		String has_pass = "false";
+		if(item.has_password)
+			has_pass = "true";
 
 		WiFiDetail fragment = (WiFiDetail) getFragmentManager()
 				.findFragmentById(R.id.detailFragment);
 		if (fragment != null && fragment.isInLayout()) {
-			fragment.setName(item.SSID);
+			
+			//refresh name
+			fragment.setName(item.SSID);		
+			//refresh signal info
+			fragment.setSignalLevel(String.valueOf(rssi), is_open, has_pass);		
+			fragment.setBSSID(String.valueOf(item.BSSID));
+			
 		} else {
 
 			Intent intent = new Intent(getApplicationContext(),
 					DetailActivity.class);
-			intent.putExtra(DetailActivity.BSSID, item.BSSID);
-
-			int rssi = item.rssi;
-			rssi = WifiManager.calculateSignalLevel(rssi, 5);
-			intent.putExtra(DetailActivity.SIGNAL, String.valueOf(rssi));
-
-			intent.putExtra(DetailActivity.SSID, item.SSID);
 			
-			//set has we key or is it free
-			String is_open = "false";
-			if(item.is_open || item.has_password)
-				is_open = "true";
-			intent.putExtra(DetailActivity.OPEN, is_open);
+			//key of the net - BSSID
+			intent.putExtra(DetailActivity.BSSID, item.BSSID);
+			intent.putExtra(DetailActivity.SIGNAL, String.valueOf(rssi));
+			//name of network
+			intent.putExtra(DetailActivity.SSID, item.SSID);			
+			intent.putExtra(DetailActivity.IS_OPEN, is_open);			
+			intent.putExtra(DetailActivity.HAS_PASSWORD, has_pass);
 			
 			startActivity(intent);
 		}

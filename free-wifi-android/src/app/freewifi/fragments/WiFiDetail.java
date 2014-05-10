@@ -25,9 +25,13 @@ public class WiFiDetail extends Fragment {
     view.setText(item);
   }
   
-  public void setSignalLevel(String level)
+  public void setSignalLevel(String level, String is_open, String has_password)
   {
-	  ImageView view = (ImageView) getView().findViewById(R.id.signal);
-	  
+	  ImageView view = (ImageView) getView().findViewById(R.id.signal);  
+  }
+  
+  public void setBSSID(String bssid)
+  {
+	  //is this wifi connected or no
   }
 } 
