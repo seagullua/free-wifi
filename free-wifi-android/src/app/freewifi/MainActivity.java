@@ -22,6 +22,8 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -54,7 +56,13 @@ public class MainActivity extends Activity implements
 	// our in program container
 	ArrayList<WiFi> arraylist = new ArrayList<WiFi>();
 	
-	
+	//create Action Bar
+	@Override
+	  public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    return true;
+	  } 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
