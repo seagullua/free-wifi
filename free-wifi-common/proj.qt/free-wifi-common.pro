@@ -26,7 +26,9 @@ SOURCES += \
     ../freewifi/crypto/ZLib.cpp \
     ../freewifi/crypto/Random.cpp \
     ../freewifi/crypto/Protect.cpp \
-    ../freewifi/crypto/Hash.cpp
+    ../freewifi/crypto/Hash.cpp \
+    ../freewifi/KeyStorage.cpp \
+    ../freewifi/WifiInfo.cpp
 
 HEADERS += \
     ../freewifi/Test.h \
@@ -36,7 +38,9 @@ HEADERS += \
     ../freewifi/crypto/ZLib.h \
     ../freewifi/crypto/Random.h \
     ../freewifi/crypto/Protect.h \
-    ../freewifi/crypto/Hash.h
+    ../freewifi/crypto/Hash.h \
+    ../freewifi/KeyStorage.h \
+    ../freewifi/WifiInfo.h
 
 
 

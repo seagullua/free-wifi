@@ -10,7 +10,8 @@
 #include "freewifi/crypto/Random.h"
 #include "freewifi/crypto/Protect.h"
 #include "freewifi/crypto/Hash.h"
-
+#include "KeyStorage.h"
+#include "WifiInfo.h"
 //#include <iostream>
 Test::Test()
 {
@@ -72,6 +73,13 @@ void testHash()
     DataPtr data = Data::create("abc");
 
     log("SHA256: "+Base64::encode(Hash::apply(data))->toString());
+}
+void testKeyStorage()
+{
+    WifiInfo w("seagull", "10.10.10.10");
+    log("WIFI id: " + w.getID());
+    log("WIFI key" + Base64::encode(w.getDecodeKey())->toString());
+    log("WIFI iv: "+ Base64::encode(w.getDecodeIV())->toString());
 }
 
 void testRandom()
@@ -147,6 +155,7 @@ void runTests()
     //testEncryption();
     testRandom();
     testSQL();
+    testKeyStorage();
     testHash();
     testEncryption();
     testSQL();

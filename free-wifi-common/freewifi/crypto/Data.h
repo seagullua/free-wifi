@@ -89,9 +89,18 @@ public:
      * @brief Constuct binary data from string
      */
     static DataPtr create(const std::string& );
+
+    static DataPtr create(const Data& data);
 private:
     ByteArr _data;
 };
 
+/**
+ * @brief Appends data b to data a
+ * @param a
+ * @param b
+ * @return
+ */
+DataPtr& operator+=(DataPtr& a, const Data b);
 
 #endif // DATA_H

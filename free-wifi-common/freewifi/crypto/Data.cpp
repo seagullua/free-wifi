@@ -48,6 +48,11 @@ DataPtr Data::create(const std::string& str)
     return std::make_shared<Data>(str);
 }
 
+DataPtr Data::create(const Data& data)
+{
+    return std::make_shared<Data>(data.getRawData());
+}
+
 const std::string Data::toString() const
 {
     std::string res;
@@ -57,4 +62,26 @@ const std::string Data::toString() const
         std::copy(&_data[0], &_data[0]+_data.size(), &res[0]);
     }
     return res;
+}
+
+DataPtr& operator+=(DataPtr& a, const Data b)
+{
+    Data::ByteArr& a_raw = a->getRawData();
+
+    Data::Size a_size = a->getSize();
+    Data::Size b_size = b.getSize();
+
+    if(a_size == 0)
+    {
+        a_raw = b.getRawData();
+    }
+    else if(b_size != 0)
+    {
+        const Data::ByteArr& b_raw = b.getRawData();
+        a_raw.resize(a_size + b_size);
+        std::copy(&b_raw[0], &b_raw[0] + b_size, &a_raw[0]+a_size);
+    }
+
+    return a;
+
 }
