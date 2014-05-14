@@ -16,5 +16,11 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+    
+    <!-- My list view theme -->
+    <style name="ListTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:activatedBackgroundIndicator">@drawable/row_selector</item>
+    </style>
 
 </resources>

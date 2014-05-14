@@ -13,5 +13,9 @@
     <string name="choose_wifi">Choose a WiFi</string>
     <string name="status_text">Status</string>
     <string name="wifi_name">WiFi Name</string>
+    
+    <color  name="list_gray">#cecece</color >
+    <color name="OrangeLight">#ffa200</color>
+    <color name="OrangeDark">#ff4200</color>
 
 </resources>
