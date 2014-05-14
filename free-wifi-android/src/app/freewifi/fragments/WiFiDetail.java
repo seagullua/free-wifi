@@ -31,6 +31,7 @@ public class WiFiDetail extends Fragment {
 
 	public void setSignalLevel(String level, String is_open, String has_password) {
 		// TODO: set signal level image
+		
 
 		EditText pass_field = (EditText) getView().findViewById(R.id.pass);
 		CheckBox share_box = (CheckBox) getView().findViewById(R.id.share);
@@ -39,6 +40,38 @@ public class WiFiDetail extends Fragment {
 		ImageView signal_img = (ImageView) getView().findViewById(R.id.signal);
 
 		signal_img.setVisibility(View.VISIBLE);
+		
+		if (has_password.equals("false")) {
+			if (is_open.equals("false")) {
+				if (level.equals("1"))
+					signal_img.setImageResource(R.drawable.blue_1_lock);
+				else if (level.equals("2"))
+					signal_img.setImageResource(R.drawable.blue_2_lock);
+				else if (level.equals("3"))
+					signal_img.setImageResource(R.drawable.blue_3_lock);
+				else if (level.equals("4"))
+					signal_img.setImageResource(R.drawable.blue_4_lock);
+			} else {
+				if(level.equals("1"))
+					signal_img.setImageResource(R.drawable.blue_1);
+				else if (level.equals("2"))
+					signal_img.setImageResource(R.drawable.blue_2);
+				else if (level.equals("3"))
+					signal_img.setImageResource(R.drawable.blue_3);
+				else if (level.equals("4"))
+					signal_img.setImageResource(R.drawable.blue_4);
+			}
+		} else {
+			// there is only with key
+			if (level.equals("1"))
+				signal_img.setImageResource(R.drawable.orange_1);
+			else if (level.equals("2"))
+				signal_img.setImageResource(R.drawable.orange_2);
+			else if (level.equals("3"))
+				signal_img.setImageResource(R.drawable.orange_3);
+			else if (level.equals("4"))
+				signal_img.setImageResource(R.drawable.orange_4);
+		}
 		
 		if (is_open == "true" || has_password == "true" ||
 				(is_open == "false" && has_password == "true")) {

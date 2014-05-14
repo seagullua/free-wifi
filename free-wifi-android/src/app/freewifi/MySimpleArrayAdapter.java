@@ -17,8 +17,7 @@ import app.freewifi.clases.WiFi;
 public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
 	private final ArrayList<WiFi> values;
-	private final String ConnectedColor ="#0c9bff";
-
+	private final String ConnectedColor = "#0c9bff";
 
 	public MySimpleArrayAdapter(Context context, ArrayList<WiFi> arraylist) {
 		super(context, R.layout.rowlayout);
@@ -63,28 +62,42 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		int rssi = values.get(position).rssi;
 		rssi = WifiManager.calculateSignalLevel(rssi, 5);
 
-		if (!is_open) {
-			if (rssi == 1)
-				wifi_icon.setImageResource(R.drawable.blue_1_lock);
-			else if (rssi == 2)
-				wifi_icon.setImageResource(R.drawable.blue_2_lock);
-			else if (rssi == 3)
-				wifi_icon.setImageResource(R.drawable.blue_3_lock);
-			else if (rssi == 4)
-				wifi_icon.setImageResource(R.drawable.blue_4_lock);
+		if (!values.get(position).has_password) {
+			if (!is_open) {
+				if (rssi == 1)
+					wifi_icon.setImageResource(R.drawable.blue_1_lock);
+				else if (rssi == 2)
+					wifi_icon.setImageResource(R.drawable.blue_2_lock);
+				else if (rssi == 3)
+					wifi_icon.setImageResource(R.drawable.blue_3_lock);
+				else if (rssi == 4)
+					wifi_icon.setImageResource(R.drawable.blue_4_lock);
+			} else {
+				if(rssi == 1)
+					wifi_icon.setImageResource(R.drawable.blue_1);
+				else if (rssi == 2)
+					wifi_icon.setImageResource(R.drawable.blue_2);
+				else if (rssi == 3)
+					wifi_icon.setImageResource(R.drawable.blue_3);
+				else if (rssi == 4)
+					wifi_icon.setImageResource(R.drawable.blue_4);
+			}
 		} else {
-			if (rssi == 2)
-				wifi_icon.setImageResource(R.drawable.blue_2);
+			// there is only with key
+			if (rssi == 1)
+				wifi_icon.setImageResource(R.drawable.orange_1);
+			else if (rssi == 2)
+				wifi_icon.setImageResource(R.drawable.orange_2);
 			else if (rssi == 3)
-				wifi_icon.setImageResource(R.drawable.blue_3);
+				wifi_icon.setImageResource(R.drawable.orange_3);
 			else if (rssi == 4)
-				wifi_icon.setImageResource(R.drawable.blue_4);
+				wifi_icon.setImageResource(R.drawable.orange_4);
 		}
 
-		//if it is connected net
-		if(ConnectedNet.getInstance().hasConnectedWiFi() &&
-				ConnectedNet.getInstance().getConnectedWiFi().equals(values.get(position).BSSID))
-		{
+		// if it is connected net
+		if (ConnectedNet.getInstance().hasConnectedWiFi()
+				&& ConnectedNet.getInstance().getConnectedWiFi()
+						.equals(values.get(position).BSSID)) {
 			status.setText("Connected");
 			name.setTextColor(Color.parseColor(ConnectedColor));
 		}
@@ -92,7 +105,6 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	}
 
 	public void changeRowColor(int position) {
-		
-		
+
 	}
 }

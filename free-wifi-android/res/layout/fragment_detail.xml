@@ -80,7 +80,8 @@
             android:layout_below="@+id/share"
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/description"
-            android:src="@drawable/walnut" />
+            android:src="@drawable/walnut" 
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

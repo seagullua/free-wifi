@@ -14,6 +14,16 @@
     <string name="status_text">Status</string>
     <string name="wifi_name">WiFi Name</string>
     
+    <string name="status_close">Close</string>
+    <string name="status_open">Open</string>
+    <string name="status_connected">Connected</string>
+    <string name="status_our">Open Free WiFi</string>
+    
+    <string name="description_close">Close Secured WiFi. Do you have a pass? Share it!</string>
+    <string name="description_open">Open Free WiFi</string>
+    <string name="description_our_open">Open Secured Free WiFi</string>
+    <string name="description_connected">Connected</string>
+    
     <color  name="list_gray">#e2e2e2</color >
     <color name="orange_light">#ffa200</color>
     <color name="orange_dark">#ff4200</color>
