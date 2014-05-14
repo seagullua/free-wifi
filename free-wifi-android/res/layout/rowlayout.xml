@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="0dip"
         android:contentDescription="@string/description"
-        android:src="@drawable/x_1_72_hdpi" />
+        android:src="@drawable/blue_1" />
 
     <TextView
         android:id="@+id/status"

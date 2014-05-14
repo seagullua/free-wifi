@@ -65,20 +65,20 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
 		if (!is_open) {
 			if (rssi == 1)
-				wifi_icon.setImageResource(R.drawable.x_1_72_lock_hdpi);
+				wifi_icon.setImageResource(R.drawable.blue_1_lock);
 			else if (rssi == 2)
-				wifi_icon.setImageResource(R.drawable.x_2_72_lock_hdpi);
+				wifi_icon.setImageResource(R.drawable.blue_2_lock);
 			else if (rssi == 3)
-				wifi_icon.setImageResource(R.drawable.x_3_72_lock_hdpi);
+				wifi_icon.setImageResource(R.drawable.blue_3_lock);
 			else if (rssi == 4)
-				wifi_icon.setImageResource(R.drawable.x_4_72_lock_hdpi);
+				wifi_icon.setImageResource(R.drawable.blue_4_lock);
 		} else {
 			if (rssi == 2)
-				wifi_icon.setImageResource(R.drawable.x_2_72_hdpi);
+				wifi_icon.setImageResource(R.drawable.blue_2);
 			else if (rssi == 3)
-				wifi_icon.setImageResource(R.drawable.x_3_72_hdpi);
+				wifi_icon.setImageResource(R.drawable.blue_3);
 			else if (rssi == 4)
-				wifi_icon.setImageResource(R.drawable.x_4_72_hdpi);
+				wifi_icon.setImageResource(R.drawable.blue_4);
 		}
 
 		//if it is connected net
