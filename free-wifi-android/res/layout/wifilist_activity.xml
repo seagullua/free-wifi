@@ -21,8 +21,10 @@
     <ListView
         android:id="@+id/list1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:descendantFocusability="blocksDescendants" >
+        android:layout_height="wrap_content"       
+        android:choiceMode="singleChoice" 
+        android:listSelector="@color/white"
+        >
 
     </ListView>
 

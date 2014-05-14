@@ -14,8 +14,9 @@
     <string name="status_text">Status</string>
     <string name="wifi_name">WiFi Name</string>
     
-    <color  name="list_gray">#cecece</color >
-    <color name="OrangeLight">#ffa200</color>
-    <color name="OrangeDark">#ff4200</color>
+    <color  name="list_gray">#e2e2e2</color >
+    <color name="orange_light">#ffa200</color>
+    <color name="orange_dark">#ff4200</color>
+    <color name="white">#ffffff</color>
 
 </resources>

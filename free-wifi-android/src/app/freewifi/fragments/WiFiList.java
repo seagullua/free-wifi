@@ -32,7 +32,7 @@ public class WiFiList extends Fragment {
 		// });
 
 		final ListView lv = (ListView) view.findViewById(R.id.list1);
-		lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		//lv.setSelector(R.drawable.row_selector);
 		
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -41,7 +41,7 @@ public class WiFiList extends Fragment {
 					int position, long id) {
 				// TODO: Change the code
 				updateDetail(position);
-				lv.setItemChecked(position, true);
+				lv.setSelected(true);
 //				if (!coloredItems.contains(position)) 
 //				{					
 //					view.setBackgroundColor(selectedColor);
