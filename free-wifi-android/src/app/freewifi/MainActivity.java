@@ -121,11 +121,12 @@ public class MainActivity extends Activity implements
 
 		try {
 			size = size - 1;
+			int itor = 0;
 			while (size >= 0) {
-				ScanResult item = results.get(size);
-				
+				ScanResult item = results.get(itor);
+				itor++;
 
-				//if(!item.SSID.equals(""))
+				if(!item.SSID.equals(""))
 				{
 					boolean is_open = isOpenWiFi(item);
 					// TODO: calculate level [0-99]
