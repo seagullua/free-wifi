@@ -125,11 +125,14 @@ public class MainActivity extends Activity implements
 				ScanResult item = results.get(size);
 				
 
-				boolean is_open = isOpenWiFi(item);
-				// TODO: calculate
-				WiFi curr_net = new WiFi(item.SSID, item.BSSID, item.level,
-						is_open);
-				arraylist.add(curr_net);
+				if(!item.SSID.equals(""))
+				{
+					boolean is_open = isOpenWiFi(item);
+					// TODO: calculate level [0-99]
+					WiFi curr_net = new WiFi(item.SSID, item.BSSID, item.level,
+							is_open);
+					arraylist.add(curr_net);
+				}
 				size--;
 				
 				if(item.SSID.equals(ConnectedNet.getInstance().getSelectedItem())){

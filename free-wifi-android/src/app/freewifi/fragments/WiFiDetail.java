@@ -30,7 +30,7 @@ public class WiFiDetail extends Fragment {
 	}
 
 	public void setSignalLevel(String level, String is_open, String has_password) {
-		// TODO: set signal level image
+		
 		
 
 		EditText pass_field = (EditText) getView().findViewById(R.id.pass);
@@ -38,8 +38,27 @@ public class WiFiDetail extends Fragment {
 		Button connect_button = (Button) getView().findViewById(R.id.button_connect);
 		Button forgett_button = (Button) getView().findViewById(R.id.forget);
 		ImageView signal_img = (ImageView) getView().findViewById(R.id.signal);
-
+		TextView description = (TextView) getView().findViewById(R.id.description);
+		
 		signal_img.setVisibility(View.VISIBLE);
+		
+		/////////////////////////////////////////////////////
+		//set description
+		if(has_password.equals("true")){
+			description.setTextColor(getResources().getColor(R.color.orange_dark));
+		}
+		else{
+			description.setTextColor(getResources().getColor(R.color.blue));
+		}
+		description.setTextSize(24);
+		
+		if(has_password.equals("false") && is_open.equals("false"))
+			description.setText(R.string.description_close);
+		else if(is_open.equals("true"))
+			description.setText(R.string.description_open);
+		else if(has_password.equals("true"))
+			description.setText(R.string.description_our_open);
+		//////////////////////////////
 		
 		if (has_password.equals("false")) {
 			if (is_open.equals("false")) {

@@ -28,7 +28,7 @@
             android:layout_alignRight="@+id/pass"
             android:layout_below="@+id/pass"
             android:text="@string/connect_button"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <CheckBox
             android:id="@+id/share"
@@ -39,6 +39,7 @@
             android:layout_below="@+id/button_connect"
             android:layout_marginTop="30dp"
             android:text="@string/share"
+            android:checked="true"
             android:textSize="16sp" 
             android:visibility="gone"/>
 
@@ -50,7 +51,7 @@
             android:layout_alignRight="@+id/share"
             android:layout_below="@+id/share"
             android:text="@string/forget"
-            android:visibility="gone" />
+             android:visibility="gone"/>
 
         <TextView
             android:id="@+id/name"
@@ -63,17 +64,6 @@
             android:textSize="36sp" />
 
         <ImageView
-            android:id="@+id/signal"
-            android:contentDescription="@string/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp"
-            android:src="@drawable/blue_1"
-            android:visibility="gone"  />
-
-        <ImageView
             android:id="@+id/emblem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,6 +72,27 @@
             android:contentDescription="@string/description"
             android:src="@drawable/walnut" 
             android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/signal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="44dp"
+            android:contentDescription="@string/description"
+            android:src="@drawable/blue_1"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_centerHorizontal="true"
+            android:text="@string/description_choose"
+            android:textSize="30sp"
+            android:textColor="@color/orange_dark"/>
 
     </RelativeLayout>
 

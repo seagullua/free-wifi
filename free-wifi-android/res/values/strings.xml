@@ -23,10 +23,12 @@
     <string name="description_open">Open Free WiFi</string>
     <string name="description_our_open">Open Secured Free WiFi</string>
     <string name="description_connected">Connected</string>
+    <string name="description_choose">Choose a WiFi from the list and connect to it</string>
     
     <color  name="list_gray">#e2e2e2</color >
     <color name="orange_light">#ffa200</color>
     <color name="orange_dark">#ff4200</color>
     <color name="white">#ffffff</color>
+    <color name="blue">#0c9bff</color>
 
 </resources>
