@@ -57,7 +57,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		ImageView wifi_icon = (ImageView) rowView.findViewById(R.id.wifiicon);
 
 		WiFi w = values.get(position);
-		Log.w("ii", String.valueOf(position)+" "+String.valueOf(values.size()));
+		//Log.w("ii", String.valueOf(position)+" "+String.valueOf(values.size()));
 		name.setText(w.SSID);
 		status.setText("");
 

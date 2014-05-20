@@ -38,7 +38,7 @@ public class WiFiDetail extends Fragment {
 		Button connect_button = (Button) getView().findViewById(R.id.button_connect);
 		Button forgett_button = (Button) getView().findViewById(R.id.forget);
 		ImageView signal_img = (ImageView) getView().findViewById(R.id.signal);
-		TextView description = (TextView) getView().findViewById(R.id.description);
+		TextView description = (TextView) getView().findViewById(R.id.description_wifi);
 		
 		signal_img.setVisibility(View.VISIBLE);
 		
