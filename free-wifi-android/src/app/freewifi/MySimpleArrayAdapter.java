@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,9 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
 		ImageView wifi_icon = (ImageView) rowView.findViewById(R.id.wifiicon);
 
-		name.setText(values.get(position).SSID);
+		WiFi w = values.get(position);
+		Log.w("ii", String.valueOf(position)+" "+String.valueOf(values.size()));
+		name.setText(w.SSID);
 		status.setText("");
 
 		boolean is_open = values.get(position).is_open;

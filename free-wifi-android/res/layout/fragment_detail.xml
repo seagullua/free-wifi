@@ -51,17 +51,7 @@
             android:layout_alignRight="@+id/share"
             android:layout_below="@+id/share"
             android:text="@string/forget"
-             android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="29dp"
-            android:text="@string/choose_wifi"
-            android:textSize="36sp" />
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/emblem"
@@ -73,26 +63,37 @@
             android:src="@drawable/walnut" 
             android:visibility="gone"/>
 
-        <ImageView
-            android:id="@+id/signal"
+        <TextView
+            android:id="@+id/wifi_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="44dp"
-            android:contentDescription="@string/description"
-            android:src="@drawable/blue_1"
-            android:visibility="invisible" />
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/pass"
+            android:layout_marginTop="88dp"
+            android:text="@string/choose_wifi"
+            android:textSize="36sp" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
+            android:layout_below="@+id/wifi_name"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
             android:text="@string/description_choose"
-            android:textSize="30sp"
-            android:textColor="@color/orange_dark"/>
+            android:textColor="@color/orange_dark"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/signal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp"
+            android:contentDescription="@string/description"
+            android:src="@drawable/blue_1"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

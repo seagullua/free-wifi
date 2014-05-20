@@ -25,7 +25,7 @@ public class WiFiDetail extends Fragment {
 	}
 
 	public void setName(String item) {
-		TextView view = (TextView) getView().findViewById(R.id.name);
+		TextView view = (TextView) getView().findViewById(R.id.wifi_name);
 		view.setText(item);
 	}
 

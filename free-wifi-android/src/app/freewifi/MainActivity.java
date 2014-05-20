@@ -125,7 +125,7 @@ public class MainActivity extends Activity implements
 				ScanResult item = results.get(size);
 				
 
-				if(!item.SSID.equals(""))
+				//if(!item.SSID.equals(""))
 				{
 					boolean is_open = isOpenWiFi(item);
 					// TODO: calculate level [0-99]
@@ -140,7 +140,7 @@ public class MainActivity extends Activity implements
 					Toast.makeText(getApplicationContext(),
 							"equals selected item"+item.SSID, 
 							   Toast.LENGTH_LONG).show();
-					lv.setSelected(true);
+					//lv.setSelected(true);
 				}
 			}
 
