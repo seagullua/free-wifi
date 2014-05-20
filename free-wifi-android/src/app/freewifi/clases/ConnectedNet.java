@@ -13,6 +13,14 @@ public class ConnectedNet {
 
 	private static ConnectedNet instance;
 	private String connected_BSSID = "";
+	private String selected_item_name;
+	
+	public String getSelectedItem(){
+		return selected_item_name;
+	}
+	public void setSelectedItem(String new_name){
+		selected_item_name = new_name;
+	}
 
 	public static synchronized ConnectedNet getInstance() {
 		if (instance == null) {

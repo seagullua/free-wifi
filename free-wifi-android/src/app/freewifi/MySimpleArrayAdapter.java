@@ -18,6 +18,8 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
 	private final ArrayList<WiFi> values;
 	private final String ConnectedColor = "#0c9bff";
+	
+	private View rowView;
 
 	public MySimpleArrayAdapter(Context context, ArrayList<WiFi> arraylist) {
 		super(context, R.layout.rowlayout);
@@ -46,7 +48,7 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
+		rowView = inflater.inflate(R.layout.rowlayout, parent, false);
 
 		TextView name = (TextView) rowView.findViewById(R.id.name);
 		TextView status = (TextView) rowView.findViewById(R.id.status);
@@ -106,5 +108,11 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 
 	public void changeRowColor(int position) {
 
+	}
+	
+	public String getWiFiName()
+	{
+		TextView name = (TextView) rowView.findViewById(R.id.name);
+		return name.toString();
 	}
 }

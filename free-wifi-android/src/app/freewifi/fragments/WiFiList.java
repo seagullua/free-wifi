@@ -3,6 +3,7 @@ package app.freewifi.fragments;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import app.freewifi.R;
+import app.freewifi.clases.ConnectedNet;
 
 public class WiFiList extends Fragment {
 
@@ -39,24 +41,14 @@ public class WiFiList extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view,
 					int position, long id) {
-				// TODO: Change the code
+				
 				updateDetail(position);
 				lv.setSelected(true);
-//				if (!coloredItems.contains(position)) 
-//				{					
-//					view.setBackgroundColor(selectedColor);
-//					
-//					// delete previous item
-//					if (!coloredItems.isEmpty()) 
-//					{
-//						int prev_position = coloredItems.get(0);
-//						View prev_view = lv.getChildAt(prev_position);
-//						prev_view.setBackgroundColor(normalColor);
-//					}
-//
-//					coloredItems.clear();
-//					coloredItems.add(position);
-//				}
+
+				//set new selected item
+				Object o = lv.getItemAtPosition(position);
+				ConnectedNet.getInstance().setSelectedItem(o.toString());
+				Log.d("Selected", "send selected item name" + o.toString());
 			}
 		});
 

@@ -32,4 +32,9 @@ public class WiFi {
 	{
 		has_password = has_pass;
 	}
+	
+	@Override
+    public String toString() {
+        return SSID;
+    }
 }

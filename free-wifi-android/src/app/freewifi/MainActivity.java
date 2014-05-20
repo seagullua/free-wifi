@@ -131,10 +131,20 @@ public class MainActivity extends Activity implements
 						is_open);
 				arraylist.add(curr_net);
 				size--;
+				
+				if(item.SSID.equals(ConnectedNet.getInstance().getSelectedItem())){
+					
+					Toast.makeText(getApplicationContext(),
+							"equals selected item"+item.SSID, 
+							   Toast.LENGTH_LONG).show();
+					lv.setSelected(true);
+				}
 			}
 
 			adapter.notifyDataSetChanged();
-
+			
+			//set selected item
+			
 			// Log.d("free", "Notify" + String.valueOf(arraylist.size()));
 		} catch (Exception e) {
 		}
