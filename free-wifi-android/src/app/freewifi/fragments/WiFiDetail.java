@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import app.freewifi.R;
 import app.freewifi.clases.ConnectedNet;
 
@@ -18,9 +20,56 @@ public class WiFiDetail extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater
+		final View view = inflater
 				.inflate(R.layout.fragment_detail, container, false);
 
+		
+		//add button click        
+        
+        Button connect_button = (Button) view.findViewById(R.id.button_connect);
+		Button disconnect_button = (Button) view.findViewById(R.id.forget);
+ 
+		
+		connect_button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				//add toast
+				Toast.makeText(getActivity(),
+						"conecting...", 
+						   Toast.LENGTH_LONG).show();
+				//call connect function
+				
+				EditText pass = (EditText) view.findViewById(R.id.pass);
+				String pass_text = "";
+				if(!pass.isEnabled()){			
+					pass_text = pass.getText().toString();
+				}
+					
+				
+				//TODO: set WEP or WPA
+				String connection_type="";
+				
+				TextView name = (TextView) view.findViewById(R.id.wifi_name);
+				String wifi_name = name.getText().toString();
+				
+				ConnectedNet.getInstance().connectWiFi(getActivity(),
+						wifi_name, pass_text, connection_type);
+			}
+ 
+		});
+		
+		disconnect_button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				//add toast
+				Toast.makeText(getActivity(),
+						"disconecting...", 
+						   Toast.LENGTH_LONG).show();
+				//call disconnect function
+				ConnectedNet.getInstance().disconectWiFi(getActivity());
+			}
+ 
+		});
 		return view;
 	}
 
@@ -29,7 +78,9 @@ public class WiFiDetail extends Fragment {
 		view.setText(item);
 	}
 
-	public void setSignalLevel(String level, String is_open, String has_password) {
+	public void setSignalLevel(String level,
+			String is_open,
+			String has_password) {
 		
 		
 
@@ -149,4 +200,5 @@ public class WiFiDetail extends Fragment {
 			signal_img.setVisibility(View.VISIBLE);
 		}
 	}
+	
 }

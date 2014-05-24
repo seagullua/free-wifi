@@ -116,5 +116,8 @@ public class ConnectedNet {
 		         break;
 		    }           
 		 }
+		
+		//set new connected wifi
+		findConnectedWiFi(context);
 	}
 }

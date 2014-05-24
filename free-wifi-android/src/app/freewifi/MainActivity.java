@@ -121,6 +121,7 @@ public class MainActivity extends Activity implements
 
 		try {
 			size = size - 1;
+			//ConnectedNet.getInstance().findConnectedWiFi(getApplicationContext());
 			int itor = 0;
 			while (size >= 0) {
 				ScanResult item = results.get(itor);

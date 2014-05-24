@@ -51,7 +51,8 @@ public class DetailActivity extends Activity {
 		}
 		
 		//add on button Connect  function
-		addListenerOnButton();
+		//addListenerOnButton();
+		
 	}
 	
 	
