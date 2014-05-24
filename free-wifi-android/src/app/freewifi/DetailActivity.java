@@ -2,8 +2,12 @@ package app.freewifi;
 
 import android.app.Activity;
 //import android.app.Application;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import app.freewifi.fragments.*;
 
 public class DetailActivity extends Activity {
@@ -41,5 +45,35 @@ public class DetailActivity extends Activity {
 			//get bssid(key) to know is we connected to this 
 			detailFragment.setBSSID(extras.getString(BSSID));
 		}
+		
+		//add on button Connect  function
+		addListenerOnButton();
 	}
+	
+	
+	public void addListenerOnButton() {
+		 
+		Button connect_button = (Button) findViewById(R.id.button_connect);
+		Button disconnect_button = (Button) findViewById(R.id.forget);
+ 
+		connect_button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				//add toast
+				//call connect function
+			}
+ 
+		});
+		
+		disconnect_button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				//add toast
+				//call disconnect function
+			}
+ 
+		});
+ 
+	}
+ 
 }
