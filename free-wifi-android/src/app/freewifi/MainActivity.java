@@ -132,6 +132,7 @@ public class MainActivity extends Activity implements
 					// TODO: calculate level [0-99]
 					WiFi curr_net = new WiFi(item.SSID, item.BSSID, item.level,
 							is_open);
+					curr_net.setEncriptionSystem(item.capabilities);
 					arraylist.add(curr_net);
 				}
 				size--;

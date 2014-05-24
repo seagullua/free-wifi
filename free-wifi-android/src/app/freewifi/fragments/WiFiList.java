@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import app.freewifi.R;
 import app.freewifi.clases.ConnectedNet;
+import app.freewifi.clases.WiFi;
 
 public class WiFiList extends Fragment {
 
@@ -46,9 +47,10 @@ public class WiFiList extends Fragment {
 				lv.setSelected(true);
 
 				//set new selected item
-				Object o = lv.getItemAtPosition(position);
+				//TODO: why do not work?
+				WiFi o = (WiFi)lv.getItemAtPosition(position);
 				ConnectedNet.getInstance().setSelectedItem(o.toString());
-				Log.d("Selected", "send selected item name" + o.toString());
+				Log.d("Selected", "set selected item name" + o.SSID);
 			}
 		});
 

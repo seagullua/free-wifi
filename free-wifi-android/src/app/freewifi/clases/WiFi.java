@@ -12,6 +12,9 @@ public class WiFi {
 	public boolean share=true;
 	public boolean has_password=false; //has pass in our BD
 	
+	//WAP WPS
+	public String encription_system ="";
+	
 	public WiFi(String name, String bssid, int new_rssi, boolean is_open_net)
 	{
 		SSID = name;
@@ -31,6 +34,10 @@ public class WiFi {
 	public void setHasPassword(boolean has_pass)
 	{
 		has_password = has_pass;
+	}
+	
+	public void setEncriptionSystem(String system){
+		encription_system = system;
 	}
 	
 	@Override

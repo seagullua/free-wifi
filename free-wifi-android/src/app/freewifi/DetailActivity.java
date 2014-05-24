@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import app.freewifi.clases.ConnectedNet;
 import app.freewifi.fragments.*;
 
 public class DetailActivity extends Activity {
@@ -60,7 +64,23 @@ public class DetailActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				//add toast
+				Toast.makeText(getApplicationContext(),
+						"conecting...", 
+						   Toast.LENGTH_LONG).show();
 				//call connect function
+				EditText pass = (EditText) findViewById(R.id.pass);
+				String pass_text = "";
+				if(!pass.isEnabled())
+					pass_text = pass.getText().toString();
+				
+				//TODO: set WEP or WPA
+				String connection_type="";
+				
+				TextView name = (TextView) findViewById(R.id.wifi_name);
+				String wifi_name = name.getText().toString();
+				
+				ConnectedNet.getInstance().connectWiFi(getApplicationContext(),
+						wifi_name, pass_text, connection_type);
 			}
  
 		});
@@ -69,7 +89,11 @@ public class DetailActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				//add toast
+				Toast.makeText(getApplicationContext(),
+						"disconecting...", 
+						   Toast.LENGTH_LONG).show();
 				//call disconnect function
+				ConnectedNet.getInstance().disconectWiFi(getApplicationContext());
 			}
  
 		});

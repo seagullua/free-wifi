@@ -106,6 +106,12 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 			status.setText("Connected");
 			name.setTextColor(Color.parseColor(ConnectedColor));
 		}
+		else{
+			//WAP-WPS
+			status.setText(w.encription_system);
+		}
+		//set status to other wifi
+		
 		return rowView;
 	}
 
