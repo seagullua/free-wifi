@@ -2,7 +2,7 @@ package app.freewifi.clases;
 
 
 public class WiFi {
-	public String SSID; //name
+	public String SSID=""; //name
 	public String BSSID; //identifier
 	public int rssi;//normal
 	public boolean is_open;

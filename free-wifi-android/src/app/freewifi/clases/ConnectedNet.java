@@ -66,11 +66,17 @@ public class ConnectedNet {
 		wifiManager.setWifiEnabled(false);
 	}
 	
-	public void connectWiFi(Context context, String ssid, String pass,
-			String sequred_type){
+	public void connectWiFi(Context context, String ssid, String pass){
 		
 		WifiConfiguration conf = new WifiConfiguration();
 		conf.SSID = "\"" + ssid + "\"";   
+		
+		String sequred_type="";				
+		WiFi selected_wifi = SelectedNet.getInstance().getSelectedItem();
+		sequred_type = selected_wifi.encription_system;
+		if(!sequred_type.contains("WPA") && !sequred_type.contains("WPS")){
+			sequred_type ="";
+		}
 		
 		// Please note the quotes. String should contain ssid in quotes
 		//Then, for WEP network you need to do this:

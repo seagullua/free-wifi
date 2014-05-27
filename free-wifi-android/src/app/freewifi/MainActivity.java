@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.freewifi.clases.ConnectedNet;
+import app.freewifi.clases.SelectedNet;
 import app.freewifi.clases.WiFi;
 import app.freewifi.fragments.*;
 import android.app.Activity;
@@ -121,7 +122,7 @@ public class MainActivity extends Activity implements
 
 		try {
 			size = size - 1;
-			//ConnectedNet.getInstance().findConnectedWiFi(getApplicationContext());
+			
 			int itor = 0;
 			while (size >= 0) {
 				ScanResult item = results.get(itor);
@@ -180,7 +181,11 @@ public class MainActivity extends Activity implements
 	@Override
 	public void onRssItemSelected(int position) {
 		
+		//Toast.makeText(this, "onRssItemSelected", Toast.LENGTH_SHORT).show();	
 		WiFi item = adapter.getMyItem(position);
+		
+		//set selected wifi to singletone
+		SelectedNet.getInstance().setSelectedItem(item);
 		
 		//signal level [1-5]
 		int rssi = item.rssi;

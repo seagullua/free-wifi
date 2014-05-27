@@ -3,9 +3,8 @@ package app.freewifi;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Color;
+//import android.graphics.Color;
 import android.net.wifi.WifiManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import app.freewifi.clases.WiFi;
 public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 	private final Context context;
 	private final ArrayList<WiFi> values;
-	private final String ConnectedColor = "#0c9bff";
 	
 	private View rowView;
 
@@ -104,11 +102,20 @@ public class MySimpleArrayAdapter extends ArrayAdapter<String> {
 				&& ConnectedNet.getInstance().getConnectedWiFi()
 						.equals(values.get(position).BSSID)) {
 			status.setText("Connected");
-			name.setTextColor(Color.parseColor(ConnectedColor));
+			name.setTextColor(context.getResources().getColor(R.color.blue));
+			
 		}
 		else{
 			//WAP-WPS
 			status.setText(w.encription_system);
+			
+			if(w.is_open)
+				status.setText(context.getResources().getString(R.string.status_open));
+			else if (w.has_password)
+				status.setText(context.getResources().getString(R.string.status_our));
+			else
+				status.setText(context.getResources().getString(R.string.status_close));
+			
 		}
 		//set status to other wifi
 		

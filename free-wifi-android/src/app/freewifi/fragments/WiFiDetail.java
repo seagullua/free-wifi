@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import app.freewifi.R;
 import app.freewifi.clases.ConnectedNet;
+import app.freewifi.clases.SelectedNet;
+import app.freewifi.clases.WiFi;
 
 public class WiFiDetail extends Fragment {
 
@@ -44,16 +46,13 @@ public class WiFiDetail extends Fragment {
 				if(!pass.isEnabled()){			
 					pass_text = pass.getText().toString();
 				}
-					
-				
-				//TODO: set WEP or WPA
-				String connection_type="";
+							
 				
 				TextView name = (TextView) view.findViewById(R.id.wifi_name);
 				String wifi_name = name.getText().toString();
 				
 				ConnectedNet.getInstance().connectWiFi(getActivity(),
-						wifi_name, pass_text, connection_type);
+						wifi_name, pass_text);
 			}
  
 		});

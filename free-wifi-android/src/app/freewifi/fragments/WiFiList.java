@@ -11,8 +11,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import app.freewifi.R;
-import app.freewifi.clases.SelectedNet;
-import app.freewifi.clases.WiFi;
 
 public class WiFiList extends Fragment {
 
@@ -47,10 +45,10 @@ public class WiFiList extends Fragment {
 				lv.setSelected(true);
 
 				//set new selected item
-				//TODO: why do not work?
-				WiFi o = (WiFi)lv.getItemAtPosition(position);
-				SelectedNet.getInstance().setSelectedItem(o);
-				Log.d("Selected", "set selected item name" + o.SSID);
+//				//TODO: why do not work?
+//				WiFi o = (WiFi)lv.getItemAtPosition(position);
+//				SelectedNet.getInstance().setSelectedItem(o);
+//				Log.d("Selected", "set selected item name" + o.SSID);
 			}
 		});
 
@@ -66,6 +64,7 @@ public class WiFiList extends Fragment {
 		super.onAttach(activity);
 		if (activity instanceof OnItemSelectedListener) {
 			listener = (OnItemSelectedListener) activity;
+			Log.d("onAttach", "onAttach");
 		} else {
 			throw new ClassCastException(activity.toString()
 					+ " must implemenet MyListFragment.OnItemSelectedListener");

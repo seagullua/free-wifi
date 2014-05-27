@@ -2,7 +2,7 @@ package app.freewifi;
 
 import android.app.Activity;
 //import android.app.Application;
-import android.content.Intent;
+//import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -75,13 +75,13 @@ public class DetailActivity extends Activity {
 					pass_text = pass.getText().toString();
 				
 				//TODO: set WEP or WPA
-				String connection_type="";
+				//String connection_type="";
 				
 				TextView name = (TextView) findViewById(R.id.wifi_name);
 				String wifi_name = name.getText().toString();
 				
 				ConnectedNet.getInstance().connectWiFi(getApplicationContext(),
-						wifi_name, pass_text, connection_type);
+						wifi_name, pass_text);
 			}
  
 		});
