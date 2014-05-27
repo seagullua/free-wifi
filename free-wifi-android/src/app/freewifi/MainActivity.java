@@ -138,13 +138,7 @@ public class MainActivity extends Activity implements
 				}
 				size--;
 				
-				if(item.SSID.equals(ConnectedNet.getInstance().getSelectedItem())){
-					
-					Toast.makeText(getApplicationContext(),
-							"equals selected item"+item.SSID, 
-							   Toast.LENGTH_LONG).show();
-					//lv.setSelected(true);
-				}
+				
 			}
 
 			adapter.notifyDataSetChanged();
