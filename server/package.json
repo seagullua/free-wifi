@@ -1,0 +1,10 @@
+{
+  "name": "Wifi",
+  "description": "Description",
+  "author": "Author name",
+  "dependencies": {
+    	"express":          "3.5.1",
+		"config-node":      "1.0.0"
+  },
+  "engine": "node 0.11.9"
+}

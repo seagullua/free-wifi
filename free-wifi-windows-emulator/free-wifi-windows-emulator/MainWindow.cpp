@@ -3,6 +3,7 @@
 
 #include <freewifi/API.h>
 #include "platform/PlatformImpl.h"
+#include <freewifi/Test.h>
 
 MainWindow* MainWindow::_instance = nullptr;
 
@@ -14,7 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     API::getInstance()->init(API::PlatformPtr(new PlatformImpl));
-    //runTests();
+
+    runTests();
 }
 
 MainWindow* MainWindow::getInstance()

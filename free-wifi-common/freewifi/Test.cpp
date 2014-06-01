@@ -96,10 +96,10 @@ void testEncryption()
     std::string plain_text = "The rooster crows at midnight!";
     std::string key = "A16ByteKey......";
 
-    DataPtr iv = Data::create();
+    DataPtr iv = Data::create("IV6ByteKey......");
     Data::ByteArr& iv_raw = iv->getRawData();
 
-    iv_raw.resize(Protect::IV_SIZE, 0);
+    //iv_raw.resize(Protect::IV_SIZE, 0);
 
     DataPtr enc = Protect::encodeIV(Data::create(plain_text),
                                     Data::create(key),
@@ -156,12 +156,12 @@ void runTests()
 //    testRandom();
 //    testSQL();
 //    testKeyStorage();
-//    testHash();
-//    testEncryption();
+    testHash();
+    testEncryption();
 //    testSQL();
 
 
-//    testData();
+    testData();
 //    log("Test: %d", 54);
 //    log("Test: %d", 53);
 

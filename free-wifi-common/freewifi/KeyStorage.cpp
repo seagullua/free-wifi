@@ -26,7 +26,7 @@ std::string KeyStorage::getWifiID(
 
     //log("Before hash: "+res->toString());
 
-    DataPtr hash = Hash::apply(res);
+    DataPtr hash = Hash::applyShort(res);
     if(hash)
     {
         DataPtr base64 = Base64::encode(hash);

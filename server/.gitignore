@@ -1,0 +1,11 @@
+node_modules/
+config/config.local.json
+.idea/
+www/bower_components
+www/.sass-cache
+
+#Avatar path
+www/uploads/avatars/*
+!www/uploads/avatars/index.html
+
+converter/example.xml

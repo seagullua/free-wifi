@@ -1,0 +1,13 @@
+{
+	"server": 
+	{
+		"port": "40400"
+	},
+    "mysql":
+    {
+        "host": "localhost",
+        "database": "wifi",
+        "user":     "root",
+        "password": ""
+    }
+}
